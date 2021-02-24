@@ -1,0 +1,7 @@
+node_modules
+.devcontainer
+.vscode
+.env*
+public/assets
+public/packs
+public/packs-test

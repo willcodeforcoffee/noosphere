@@ -1,24 +1,40 @@
-# README
+# Noösphere
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Noösphere is a personal social server.
 
-Things you may want to cover:
+## Running in Production
 
-* Ruby version
+### Step 1. Build the Application Docker images
 
-* System dependencies
+First you have to build the Application Docker image:
 
-* Configuration
+```
+docker build --tag noosphere:1.1.0 --tag noosphere:latest .
+```
 
-* Database creation
+Second you have to build the Proxy Docker image
 
-* Database initialization
+```
+docker build --file config/docker/proxy/Dockerfile --tag noosphere-proxy:1.1.0 --tag noosphere-proxy:latest .
+```
 
-* How to run the test suite
+### Step 2. Setup the Environment variables
 
-* Services (job queues, cache servers, search engines, etc.)
+Anything you aren't passing from the environment should be loaded into `.env.production.local`. Most settings are documented in `.env` also.
 
-* Deployment instructions
+- [Pushover](https://pushover.net/) is used to send app notifications
+- SMTP is used to send email
 
-* ...
+### Step 3. Docker Compose to run all services
+
+To run everything use the production compose:
+
+```
+docker-compose -f docker-compose.yml -f config/docker/docker-compose.yml up --detach
+```
+
+## Stopping in Production
+
+```
+docker-compose -f docker-compose.yml -f config/docker/docker-compose.yml down
+```

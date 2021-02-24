@@ -1,0 +1,95 @@
+AllCops:
+  TargetRubyVersion: 2.7
+  NewCops: enable
+
+Rails:
+  Enabled: true
+
+RSpec:
+  Enabled: true
+
+require:
+  - rubocop-rails
+  - rubocop-rspec
+
+Metrics/AbcSize:
+  Enabled: true
+  Exclude:
+    - "**/*.rake"
+    - "db/**/*"
+    - "spec/**/*.rb"
+
+Metrics/BlockLength:
+  Enabled: true
+  Exclude:
+    - "**/*.rake"
+    - "db/**/*"
+    - "config/environments/*.rb"
+    - "spec/**/*.rb"
+
+Metrics/MethodLength:
+  Description: >-
+    This cop checks if the length of a method exceeds some maximum value. Comment lines can optionally be ignored. The maximum allowed length is configurable.
+    You can set literals you want to fold with CountAsOne. Available are: 'array', 'hash', and 'heredoc'. Each literal will be counted as one line regardless of its actual size.
+  CountComments: false
+  Enabled: true
+  Max: 15
+  Exclude:
+    - "db/**/*"
+
+Style/BlockComments:
+  Enabled: true
+  Exclude:
+    - "spec/spec_helper.rb"
+
+Style/ClassAndModuleChildren:
+  Enabled: true
+  Exclude:
+    - "spec/**/*"
+    - "app/controllers/user_credentials/*_controller.rb"
+
+Style/Documentation:
+  Description: "Document classes and non-namespace modules."
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  EnforcedStyle: never
+
+Style/SymbolArray:
+  Enabled: false
+
+Style/TrailingCommaInArguments:
+  Description: >-
+    This cop checks for trailing comma in argument lists. The supported styles are:
+    - consistent_comma: Requires a comma after the last argument, for all parenthesized method calls with arguments.
+    - comma: Requires a comma after the last argument, but only for parenthesized method calls where each argument is on its own line.
+    - no_comma: Requires that there is no comma after the last argument.
+  EnforcedStyleForMultiline: consistent_comma
+
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: consistent_comma
+  Enabled: true
+
+Layout/CommentIndentation:
+  Enabled: true
+  Exclude:
+    - "spec/spec_helper.rb"
+
+Layout/LineLength:
+  Enabled: true
+  Exclude:
+    - "config/initializers/devise.rb"
+
+Rails/Output:
+  Description: >-
+    This cop checks for the use of output calls like puts and print.
+    It is disabled for Rake tasks where the Rails logger is not used.
+  Enabled: true
+  Exclude:
+    - "db/seeds.rb"
+    - "lib/tasks/*"
+
+RSpec/FilePath:
+  Enabled: true
+  Exclude:
+    - "spec/models/user_credential_spec.rb"
