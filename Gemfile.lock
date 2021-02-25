@@ -279,6 +279,8 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    tailwindcss-rails (0.3.3)
+      rails (>= 6.0.0)
     thor (1.1.0)
     tilt (2.0.10)
     timecop (0.9.4)
@@ -341,6 +343,7 @@ DEPENDENCIES
   selenium-webdriver
   solargraph
   spring
+  tailwindcss-rails
   timecop
   turbo-rails
   tzinfo-data
