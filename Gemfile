@@ -26,7 +26,10 @@ gem 'bcrypt', '~> 3.1.7'
 # gem 'image_processing', '~> 1.2'
 
 # Reduces boot times through caching; required in config/boot.rb
+gem 'aasm'
 gem 'bootsnap', '>= 1.4.4', require: false
+gem 'pushover'
+gem 'sidekiq'
 gem 'tailwindcss-rails'
 gem 'turbo-rails'
 

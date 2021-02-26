@@ -18,5 +18,7 @@ module Noosphere
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+    config.x.pushover.token = ENV['PUSHOVER_TOKEN']
+    config.x.pushover.user_key = ENV['PUSHOVER_USERKEY']
   end
 end
