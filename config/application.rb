@@ -13,6 +13,17 @@ module Noosphere
 
     config.active_job.queue_adapter = :sidekiq
 
+    config.action_mailer.default_url_options = { host: ENV['HOST_NAME']&.downcase }
+
+    # SystemEmailer emails should only go to the sysop(s) so a default :to must be set in the :defaults
+    config.x.mailers.enable_smtp_sending = Rails.env.production? || ENV['ENABLE_SMTP_SENDING']&.downcase == 'true'
+    config.x.mailers.system_mailer = {
+      default: {
+        from: ENV['SYSTEM_MAILER_DEFAULT_FROM_ADDRESS'],
+        to: ENV['SYSTEM_MAILER_DEFAULT_RECIPIENT_ADDRESS'],
+      },
+    }
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files

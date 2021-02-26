@@ -20,7 +20,7 @@ Rails.application.configure do
     config.action_controller.perform_caching = true
     config.action_controller.enable_fragment_cache_logging = true
 
-    config.cache_store = :memory_store
+    config.cache_store = :redis_cache_store, { url: ENV['REDIS_URL'] }
     config.public_file_server.headers = {
       'Cache-Control' => "public, max-age=#{2.days.to_i}",
     }
@@ -35,8 +35,29 @@ Rails.application.configure do
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
-
   config.action_mailer.perform_caching = false
+
+  # https://guides.rubyonrails.org/action_mailer_basics.html#action-mailer-configuration
+  if Rails.configuration.x.mailers.enable_smtp_sending
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.perform_deliveries = true
+    config.action_mailer.smtp_settings = {
+      address: ENV['SMTP_ADDRESS'],
+      port: 587,
+      enable_starttls_auto: true,
+      domain: ENV['SMTP_DOMAIN'],
+      authentication: :plain,
+      user_name: ENV['SMTP_USER_NAME'],
+      password: ENV['SMTP_PASSWORD'],
+    }
+  else
+    config.action_mailer.delivery_method = :letter_opener_web
+    config.action_mailer.perform_deliveries = true
+  end
+  config.action_mailer.default_url_options = {
+    host: ENV.fetch('HOST_NAME', 'localhost').downcase,
+    port: ENV.fetch('PORT', 6110),
+  }
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log

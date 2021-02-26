@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type"
+    content="text/html; charset=UTF-8" />
+    <title>Bandar Notification</title>
+    <style type="text/css"></style>
+  </head>
+  <body>
+    <h1>Bandar Notification</h1>
+    <% unless Rails.env.production? %>
+    <div style="color:red; border: black;">
+      Note: non-production account notification.
+    </div>
+    <% end # unless Rails.env.production? %>
+    <%= yield %>
+  </body>
+</html>
