@@ -5,13 +5,13 @@ services:
     image: noosphere-proxy:latest
     command: sh -c "/wait && nginx"
     environment:
-      WAIT_HOSTS: web:6040
+      WAIT_HOSTS: web:6110
       WAIT_BEFORE_HOSTS: 15 # Wait before checking for web to be started
       WAIT_HOSTS_TIMEOUT: 150 # Give 2.5min to run for migrations and asset compilation
       WAIT_SLEEP_INTERVAL: 10
     restart: always
     ports:
-      - 6080:6080
+      - 6100:6100
     volumes:
       - ./config/docker/proxy/nginx.conf:/etc/nginx/nginx.conf:ro
       - webassets-data:/usr/share/nginx/html:ro
@@ -24,7 +24,7 @@ services:
       WAIT_HOSTS_TIMEOUT: 60
     restart: always
     ports:
-      - 6040:6040
+      - 6110:6110
     volumes:
       - log-data:/app/log
       - webassets-data:/var/assets:rw

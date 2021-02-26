@@ -1,0 +1,4 @@
+#!/bin/sh
+docker build --tag noosphere:1.0.0 --tag noosphere:latest .
+docker build --file config/docker/proxy/Dockerfile --tag noosphere-proxy:1.0.0 --tag noosphere-proxy:latest .
+docker-compose -f docker-compose.yml -f config/docker/docker-compose.yml up --detach
