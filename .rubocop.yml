@@ -24,7 +24,8 @@ Metrics/BlockLength:
   Exclude:
     - "**/*.rake"
     - "db/**/*"
-    - "config/environments/*.rb"
+    - "config/application.rb"
+    - "config/environments/**/*"
     - "spec/**/*.rb"
 
 Metrics/MethodLength:
@@ -90,6 +91,9 @@ Rails/Output:
     - "lib/tasks/*"
 
 RSpec/FilePath:
+  Enabled: false
+
+RSpec/MultipleExpectations:
   Enabled: true
   Exclude:
-    - "spec/models/user_credential_spec.rb"
+    - "spec/mailers/*"
