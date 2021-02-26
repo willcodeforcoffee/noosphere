@@ -64,7 +64,7 @@ module Communication
         Pushover::Message.new({
                                 token: Rails.configuration.x.pushover.token,
                                 user: Rails.configuration.x.pushover.user_key,
-                                title: title || 'Bandar Notification',
+                                title: title || 'Noosphere Notification',
                                 message: message,
                               })
       end
