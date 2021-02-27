@@ -1,0 +1,17 @@
+{
+  "trailingComma": "es5",
+  "endOfLine": "lf",
+  "printWidth": 120,
+  "tabWidth": 2,
+  "semi": true,
+  "singleQuote": false,
+  "preferSingleQuotes": false,
+  "preferHashLabels": false,
+  "requirePragma": false,
+  "bracketSpacing": true,
+  "rubySingleQuote": true,
+  "rubyToProc": false,
+  "rubyArrayLiteral": true,
+  "rubyHashLabel": true,
+  "rubyModifier": true
+}
