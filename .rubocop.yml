@@ -58,6 +58,9 @@ Style/Documentation:
 
 Style/FrozenStringLiteralComment:
   EnforcedStyle: never
+  Exclude:
+    - "config/initializers/devise.rb"
+    - "db/migrate/20210228210324_devise_create_user_credentials.rb"
 
 Style/SymbolArray:
   Enabled: false

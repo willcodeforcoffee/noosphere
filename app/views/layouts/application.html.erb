@@ -12,6 +12,14 @@
   </head>
 
   <body>
+    <nav>
+      <ol>
+        <li><%= link_to 'Sign In', new_user_credential_session_path %></li>
+      </ol>
+    </nav>
+    <%# TODO: Required for Devise. Figure out a better way to show flash than this... %>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
     <%= yield %>
   </body>
 </html>
