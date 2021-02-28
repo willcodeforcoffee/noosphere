@@ -5,5 +5,6 @@ class UserCredential < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :confirmable, :lockable, :timeoutable, :trackable
 
-  belongs_to :user
+
+  has_one :user
 end
