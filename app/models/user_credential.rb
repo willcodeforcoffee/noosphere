@@ -6,5 +6,5 @@ class UserCredential < ApplicationRecord
          :confirmable, :lockable, :timeoutable, :trackable
 
 
-  has_one :user
+  has_one :user, dependent: :destroy
 end

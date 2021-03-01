@@ -1,5 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe UserCredential, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'create one' do
+    let(:user_credential) { create(:user_credential) }
+
+    it 'is valid' do
+      expect(user_credential).to be_valid
+    end
+  end
 end
