@@ -84,6 +84,7 @@ Layout/CommentIndentation:
 
 Layout/LineLength:
   Enabled: true
+  Max: 200
   Exclude:
     - "config/initializers/devise.rb"
 
