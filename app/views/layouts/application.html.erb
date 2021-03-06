@@ -11,7 +11,7 @@
     <%= stylesheet_pack_tag "application", "data-turbo-track": "reload" %>
     <%= yield :head %>
   </head>
-  <body>
+  <body class="container justify-center">
     <%= render(NavBarComponent.new(current_user: @current_user)) %>
     <%# TODO: Required for Devise. Figure out a better way to show flash than this... %>
     <p class="notice bg-yellow-200 text-black"><%= notice %></p>

@@ -1,2 +1,13 @@
-<h1>Test#index</h1>
-<p>Find me in app/views/test/index.html.erb</p>
+<div class="container">
+  <h1>Heading 1</h1>
+  <h2>Heading 2</h2>
+  <p>This is regular text.</p>
+  <%= render(AlertComponent.new(level: :error, message: "Error message", dismissable: true)) %>
+  <%= render(AlertComponent.new(level: :warning, message: "Warning message", dismissable: true)) %>
+  <%= render(AlertComponent.new(level: :info, message: "Info message", dismissable: true)) %>
+</div>
+<div class="container">
+  <form method="POST" action="">
+    <legend>Form example</legend>
+  </form>
+</div>
