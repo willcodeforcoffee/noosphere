@@ -1,7 +1,7 @@
 class AlertComponent < ViewComponent::Base
   class InvalidLevelError < StandardError
     def initialize(level)
-      super("The level #{level} is not valid")
+      super(msg: "The level [#{level}] is not valid for AlertComponent")
       @level = level
     end
   end
@@ -18,13 +18,12 @@ class AlertComponent < ViewComponent::Base
     info: 'border-green-300 bg-green-200 text-green-900',
   }.freeze
 
-  def initialize(level:, message:, dismissable: false)
+  def initialize(level:, message:)
     raise InvalidLevelError, level unless LEVEL.include?(level)
     super
 
     @level = level
     @message = message
-    @dismissable = dismissable
     @level_css_class = LEVEL_CSS_CLASSES[level]
   end
 end
