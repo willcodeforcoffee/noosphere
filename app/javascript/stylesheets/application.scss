@@ -18,7 +18,9 @@
       @apply text-xl font-bold;
     }
 
-    .field {
+    div.field {
+      @apply px-2;
+
       label {
         @apply px-1 py-2;
       }
@@ -30,6 +32,14 @@
         &:focus {
           @apply outline-none shadow-sm;
         }
+      }
+    }
+
+    div.actions {
+      @apply mt-2 pb-1 pt-2 px-2 border-t border-black bg-gray-300;
+
+      input[type="submit"] {
+        @apply px-1 py-2 bg-green-600 border border-green-900 rounded-md shadow-sm;
       }
     }
   }
