@@ -1,4 +1,4 @@
-class TestController < ApplicationController
+class ThemeController < ApplicationController
   def index
     @fake = Fake.new
     @fake.valid?

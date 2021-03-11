@@ -5,5 +5,8 @@ Rails.application.routes.draw do
   get 'home/index'
   root to: 'home#index'
 
-  get 'test/index' unless Rails.env.production?
+  unless Rails.env.production?
+    get 'theme/index'
+    post 'theme/index'
+  end
 end
