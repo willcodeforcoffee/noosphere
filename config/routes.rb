@@ -9,4 +9,16 @@ Rails.application.routes.draw do
     get 'theme/index'
     post 'theme/index'
   end
+
+  # Site Administration Namespace
+  namespace :admin do
+    get 'home/index'
+    get '/', to: 'home#index'
+  end
+
+  # Social Activity Namespace
+  namespace :social do
+    get 'home/index'
+    get '/', to: 'home#index'
+  end
 end
