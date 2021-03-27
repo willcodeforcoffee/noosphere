@@ -868,9 +868,9 @@
     rimraf "^3.0.2"
 
 "@prettier/plugin-ruby@^1.5.3":
-  version "1.5.3"
-  resolved "https://registry.yarnpkg.com/@prettier/plugin-ruby/-/plugin-ruby-1.5.3.tgz#04c1058fce59651c38c02ace39faa7a0daa4264b"
-  integrity sha512-YXXf0PGsUOMk40UlfnjDeF3NuRmKE4ddN4L2drFaskhqcB/P9jNGabz5FsGJdJt+ibPxfRsqx05gfxGLZo1wHg==
+  version "1.5.5"
+  resolved "https://registry.yarnpkg.com/@prettier/plugin-ruby/-/plugin-ruby-1.5.5.tgz#9e206fc856a182a292fcfab9043f53c7a3d0af97"
+  integrity sha512-b387GdXU+LrnY+oaKWRUI5EnsUvrQ0G1jUSVPkvUTGzp/w+BB9/n4SICVPY3V9/wYsvWpAZq4LkE4FdBufXUtA==
   dependencies:
     prettier ">=1.10"
 
