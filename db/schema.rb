@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_28_221314) do
+ActiveRecord::Schema.define(version: 2021_03_30_025035) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 2021_02_28_221314) do
     t.bigint "user_credential_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "roles", array: true
     t.index ["user_credential_id"], name: "index_users_on_user_credential_id"
     t.index ["username"], name: "index_users_on_username", unique: true
   end
