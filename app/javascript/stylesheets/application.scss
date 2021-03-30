@@ -1,57 +1,8 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+@import "base";
 
-@layer base {
-  h1 {
-    @apply text-2xl pb-4;
-  }
-  h2 {
-    @apply text-xl pb-3;
-  }
-
-  a {
-    @apply text-blue-800 border-blue-800 border-b;
-  }
-
-  // Style for forms
-  form {
-    @apply container bg-gray-100 shadow border rounded;
-
-    legend {
-      @apply text-xl font-bold;
-    }
-
-    div.field {
-      @apply px-2 mx-1;
-
-      label {
-        @apply px-1 py-2;
-      }
-      input,
-      textarea {
-        @apply bg-white border-gray-300 border rounded-sm px-1 py-2 w-full lg:w-3/4 xl:w-1/2;
-        &::placeholder {
-          @apply border-gray-400;
-        }
-        &:focus {
-          @apply outline-none shadow-sm;
-        }
-      }
-    }
-
-    div.actions {
-      @apply mt-2 pb-1 pt-2 px-2 border-t border-black bg-gray-300;
-
-      input[type="submit"] {
-        @apply p-2 bg-green-300 border border-green-900 rounded-md shadow-sm;
-      }
-    }
-  }
-
-  nav {
-    a {
-      @apply border-none text-black;
-    }
-  }
-}
+// Components
+@import "form";
+@import "nav_bar";

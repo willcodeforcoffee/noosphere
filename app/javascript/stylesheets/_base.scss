@@ -1,0 +1,18 @@
+@layer base {
+  h1 {
+    @apply text-2xl pb-4;
+  }
+  h2 {
+    @apply text-xl pb-3;
+  }
+
+  a {
+    @apply text-blue-800 border-blue-800 border-b;
+  }
+
+  nav {
+    a {
+      @apply border-none text-black;
+    }
+  }
+}
