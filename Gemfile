@@ -31,6 +31,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'csv'
 gem 'devise'
 gem 'dotenv-rails'
+gem 'pundit'
 gem 'pushover'
 gem 'sidekiq'
 gem 'tailwindcss-rails'
