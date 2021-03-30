@@ -1,4 +1,5 @@
-class Social::HomeController < ApplicationController
-  def index
+module Social
+  class HomeController < ApplicationController
+  def index; end
   end
 end
