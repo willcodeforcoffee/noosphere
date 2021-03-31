@@ -1,18 +1,19 @@
 {
   "name": "noosphere",
   "private": true,
+  "version": "0.1.0",
   "dependencies": {
     "@hotwired/turbo-rails": "^7.0.0-beta.5",
     "@rails/actioncable": "^6.0.0",
     "@rails/activestorage": "^6.0.0",
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "5.2.1",
+    "@tailwindcss/forms": "^0.3.2",
     "autoprefixer": "^9",
     "postcss": "^7",
     "stimulus": "^2.0.0",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat"
   },
-  "version": "0.1.0",
   "devDependencies": {
     "@prettier/plugin-ruby": "^1.5.3",
     "prettier": "^2.2.1",

@@ -13,16 +13,32 @@
       label {
         @apply px-1 py-2;
       }
-      input,
+
+      input[type="text"],
+      input[type="password"],
+      input[type="email"],
+      input[type="number"],
+      input[type="url"],
+      input[type="date"],
+      input[type="datetime-local"],
+      input[type="month"],
+      input[type="week"],
+      input[type="time"],
+      input[type="search"],
+      input[type="tel"],
       textarea {
-        @apply bg-white border-gray-300 border rounded-sm px-1 py-2 w-full lg:w-3/4 xl:w-1/2;
-        &::placeholder {
-          @apply border-gray-400;
-        }
-        &:focus {
-          @apply outline-none shadow-sm;
-        }
+        @apply w-full lg:w-3/4 xl:w-1/2;
       }
+      // input,
+      // textarea {
+      //   @apply bg-white border-gray-300 border rounded-sm px-1 py-2 w-full lg:w-3/4 xl:w-1/2;
+      //   &::placeholder {
+      //     @apply border-gray-400;
+      //   }
+      //   &:focus {
+      //     @apply outline-none shadow-sm;
+      //   }
+      // }
     }
 
     div.actions {
