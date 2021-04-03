@@ -29,10 +29,10 @@ module Rack
       # increments the count) so request below the limit are not blocked until
       # they hit the limit.  At that point, filter will return true and block.
       Rack::Attack::Allow2Ban.filter(
-        req.ip,
+        "login-scrape-#{req.ip}",
         maxretry: 20,
         findtime: 1.minute,
-        bantime: 1.hour,
+        bantime: 12.hour,
       ) do
         # The count for the IP is incremented if the return value is truthy.
         req.path == "/user_credentials/sign_in" and req.post?
