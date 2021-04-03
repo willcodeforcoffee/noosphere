@@ -52,4 +52,5 @@ windows:
         - services: docker-compose up
         - rails: bin/rails s --binding=0.0.0.0
         - webpacker: bin/webpack-dev-server
-        - sidekiq: bundle exec sidekiq
+        - sidekiq: bin/sidekiq
+        - clockwork: bin/clockwork config/clockwork.rb

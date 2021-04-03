@@ -49,9 +49,9 @@ services:
     depends_on:
       - postgres
       - redis
-  goodjob:
+  sidekiq:
     image: noosphere:latest
-    command: sh -c "/wait && bin/good_job start"
+    command: sh -c "/wait && bin/sidekiq"
     environment:
       WAIT_HOSTS: redis:6379,postgres:5432
       WAIT_HOSTS_TIMEOUT: 60
