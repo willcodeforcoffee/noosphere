@@ -14,8 +14,10 @@ module Rack
         # The count for the IP is incremented if the return value is truthy
         CGI.unescape(req.query_string) =~ %r{/etc/passwd} ||
           req.path.include?("/etc/passwd") || req.path.include?("password") ||
-          req.path.include?("wp-admin") || req.path.include?("wp-login") ||
-          req.path.include?("wp-content") || req.path.include?(".php") ||
+          req.path.include?("passwd") || req.path.include?("wp-admin") ||
+          req.path.include?("wp-login") || req.path.include?("wp-content") ||
+          req.path.include?(".php") || req.path.include?(".asp") ||
+          req.path.include?(".aspx") || req.path.include?(".cgi") ||
           req.path.include?("\\x") || req.path.include?(".env")
       end
     end
