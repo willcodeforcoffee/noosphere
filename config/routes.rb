@@ -18,7 +18,9 @@ Rails
                    }
       end
 
-    mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
+    if Rails.env.development?
+      mount LetterOpenerWeb::Engine, at: "/letter_opener"
+    end
     get "home/index"
     root to: "home#index"
 
@@ -38,4 +40,6 @@ Rails
       get "home/index"
       get "/", to: "home#index"
     end
+
+    Page.all.each { |page| get page.url, to: "pages#show" }
   end
