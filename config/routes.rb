@@ -41,5 +41,7 @@ Rails
       get "/", to: "home#index"
     end
 
-    Page.all.each { |page| get page.url, to: "pages#show" }
+    if Page.table_exists?
+      Page.published.each { |page| get page.url, to: "pages#show" }
+    end
   end

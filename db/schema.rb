@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 2021_04_04_084735) do
     t.datetime "published_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["published_at"], name: "index_pages_on_published_at"
     t.index ["url"], name: "index_pages_on_url", unique: true
   end
 

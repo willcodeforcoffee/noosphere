@@ -1,6 +1,7 @@
 class PagesController < ApplicationController
   def show
-    binding.pry
-    @page = Page.find_by(url: request.path)
+    @page = Page.published.where(url: request.path).first
+
+    return render text: "Not Found", status: :not_found if @page.blank?
   end
 end

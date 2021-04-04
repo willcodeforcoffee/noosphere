@@ -3,6 +3,10 @@ FactoryBot.define do
     url { "/test" }
     title { "Test Page" }
     description { "This is a test page" }
-    publish_date { "2021-04-04 02:47:35" }
+    published_at { nil }
+
+    trait :published do
+      published_at { 1.hour.ago }
+    end
   end
 end
