@@ -23,7 +23,7 @@ COPY . /app
 RUN bin/rails assets:clean assets:precompile
 
 ## Add the wait script to the image
-ADD https://github.com/ufoscout/docker-compose-wait/releases/download/2.7.3/wait /wait
+ADD https://github.com/ufoscout/docker-compose-wait/releases/download/2.8.0/wait /wait
 RUN chmod +x /wait
 
 EXPOSE 6040
