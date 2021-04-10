@@ -9,6 +9,12 @@
       <%= link_to('Noosphere', root_path) %>
     </div>
     <ol class="px-2 pt-2 pb-3 sm:flex mr-auto">
+    <% if @current_user&.in_role?("admin") %>
+      <li><%= link_to('Admin', admin_path) %></li>
+    <% end %>
+    <% if @current_user&.in_role?("social") %>
+      <li><%= link_to('Social', social_path) %></li>
+    <% end %>
     <% unless Rails.env.production? %>
       <li><%= link_to('Theme', theme_index_path) %></li>
     <% end %>

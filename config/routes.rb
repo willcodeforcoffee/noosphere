@@ -33,6 +33,8 @@ Rails
     namespace :admin do
       get "home/index"
       get "/", to: "home#index"
+
+      resources :pages
     end
 
     # Social Activity Namespace

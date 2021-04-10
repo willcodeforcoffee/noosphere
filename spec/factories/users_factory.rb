@@ -4,7 +4,7 @@ FactoryBot.define do
     email_address { "guth.bandar@institute-for-historical-inquiry.edu" }
     state { "MyString" } # TODO
     user_credential { create(:user_credential) }
-    roles { ["content"] }
+    roles { ["social"] }
 
     trait :admin do
       roles { ["admin"] }
