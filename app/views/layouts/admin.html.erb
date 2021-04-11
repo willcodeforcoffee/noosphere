@@ -1,0 +1,12 @@
+<% content_for :main do %>
+<div class="flex flex-row">
+  <div class="side-nav w-64">Side</div>
+  <div class="main">
+    <h2>#Main</h2>
+    <div>
+      <%= yield %>
+    </div>
+  </div>
+</div>
+<% end %>
+<%= render template: "layouts/application" %>

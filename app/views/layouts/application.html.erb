@@ -16,6 +16,6 @@
     <% flash.each do |type, msg| %>
       <%= render(AlertComponent.new(level: flash_type_to_alert_level(type), message: msg)) %>
     <% end %>
-    <%= yield %>
+    <%= content_for?(:main) ? yield(:main) : yield  %>
   </body>
 </html>
