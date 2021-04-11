@@ -9,7 +9,7 @@
   "preferHashLabels": false,
   "requirePragma": false,
   "bracketSpacing": true,
-  "rubySingleQuote": false,
+  "rubySingleQuote": true,
   "rubyToProc": false,
   "rubyArrayLiteral": true,
   "rubyHashLabel": true,

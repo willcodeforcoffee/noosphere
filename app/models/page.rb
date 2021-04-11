@@ -3,6 +3,6 @@ class Page < ApplicationRecord
 
   scope :published,
         -> {
-          where("published_at IS NOT NULL AND published_at <= ?", DateTime.now)
+          where('published_at IS NOT NULL AND published_at <= ?', DateTime.now)
         }
 end

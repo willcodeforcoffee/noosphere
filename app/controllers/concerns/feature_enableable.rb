@@ -21,7 +21,7 @@ module FeatureEnableable
       return if feature_enabled?
 
       logger.warn("Action blocked: feature #{feature_name} not enabled")
-      render plain: "404: Not Found", status: :not_found
+      render plain: '404: Not Found', status: :not_found
     end
   end
 end

@@ -26,9 +26,10 @@ Metrics/BlockLength:
   Enabled: true
   Exclude:
     - "**/*.rake"
-    - "db/**/*"
     - "config/application.rb"
     - "config/environments/**/*"
+    - "config/routes.rb"
+    - "db/**/*"
     - "spec/**/*.rb"
 
 Metrics/MethodLength:
@@ -62,6 +63,10 @@ Style/FrozenStringLiteralComment:
     - "config/initializers/devise.rb"
     - "db/migrate/20210228210324_devise_create_user_credentials.rb"
 
+Style/StringLiterals:
+  Enabled: true
+  EnforcedStyle: single_quotes
+
 Style/SymbolArray:
   Enabled: false
 
@@ -94,6 +99,7 @@ Rails/Output:
     It is disabled for Rake tasks where the Rails logger is not used.
   Enabled: true
   Exclude:
+    - "app/seeds/**/*.rb"
     - "db/seeds.rb"
     - "lib/tasks/*"
 

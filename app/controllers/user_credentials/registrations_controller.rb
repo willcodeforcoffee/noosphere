@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class UserCredentials::RegistrationsController < Devise::RegistrationsController
   include FeatureEnableable
 
@@ -54,6 +52,6 @@ class UserCredentials::RegistrationsController < Devise::RegistrationsController
   protected
 
   def feature_name
-    "registration"
+    'registration'
   end
 end

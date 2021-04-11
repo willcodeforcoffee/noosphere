@@ -1,14 +1,14 @@
-require "clockwork"
+require 'clockwork'
 
-require_relative "../config/boot"
-require_relative "../config/environment"
+require_relative '../config/boot'
+require_relative '../config/environment'
 
 # https://github.com/Rykian/clockwork
 module Clockwork
   configure do |config|
     # config[:sleep_timeout] = 5
     config[:logger] = Rails.logger
-    config[:tz] = ENV.fetch("TZ", "UTC")
+    config[:tz] = ENV.fetch('TZ', 'UTC')
     # config[:max_threads] = 15
     # config[:thread] = true
   end

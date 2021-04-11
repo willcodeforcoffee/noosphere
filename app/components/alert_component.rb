@@ -9,9 +9,9 @@ class AlertComponent < ViewComponent::Base
   LEVEL = %i[error warning info].freeze
 
   LEVEL_CSS_CLASSES = {
-    error: "border-red-300 bg-red-200 text-red-900",
-    warning: "border-yellow-300 bg-yellow-200 text-yellow-900",
-    info: "border-green-300 bg-green-200 text-green-900",
+    error: 'border-red-300 bg-red-200 text-red-900',
+    warning: 'border-yellow-300 bg-yellow-200 text-yellow-900',
+    info: 'border-green-300 bg-green-200 text-green-900',
   }.freeze
 
   def initialize(level:, message:)

@@ -6,7 +6,11 @@ class User < ApplicationRecord
   validates :email_address, presence: true
   validates :roles, inclusion: { in: ROLES }
 
+  def self.public_user
+    User.new({ username: nil, email_address: nil, roles: [] })
+  end
+
   def in_role?(role)
-    self.roles.include?(role)
+    roles.include?(role)
   end
 end

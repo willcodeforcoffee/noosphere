@@ -11,17 +11,17 @@ class AdminPolicy < ApplicationPolicy
     user_in_admin_role?
   end
 
-  # def new?
-  #   create?
-  # end
+  def new?
+    create?
+  end
 
   def update?
     user_in_admin_role?
   end
 
-  # def edit?
-  #   update?
-  # end
+  def edit?
+    update?
+  end
 
   def destroy?
     user_in_admin_role?
@@ -36,6 +36,6 @@ class AdminPolicy < ApplicationPolicy
   protected
 
   def user_in_admin_role?
-    @user.in_role?("admin")
+    @user.in_role?('admin')
   end
 end

@@ -3,7 +3,7 @@ class Feature < ApplicationRecord
 
   class FeatureNotFoundError < StandardError
     def initialize(feature_name)
-      @message = "Feature [#{feature_name}] does not exist"
+      super("Feature [#{feature_name}] does not exist")
     end
   end
 
