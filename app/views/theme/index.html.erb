@@ -9,7 +9,7 @@
 </div>
 <div class="container">
   <%= form_for(@fake, url: theme_index_path) do |f| %>
-    <legend>Form example</legend>
+    <legend>form_for example</legend>
     <%# TODO: Incorporate all https://guides.rubyonrails.org/form_helpers.html %>
     <%#       https://api.rubyonrails.org/v6.1.3/classes/ActionView/Helpers/FormBuilder.html %>
     <div class="field">
@@ -29,4 +29,25 @@
       <%= f.submit "Submit" %>
     </div>
   <% end # form_for %>
+</div>
+<div class="container">
+  <%= form_with(model: @fake, url: theme_index_path) do |form| %>
+    <legend>form_with example</legend>
+    <div class="field">
+      <%= form.label :name %>
+      <%= form.text_field :name, autofocus: true, autocomplete: "Name" %>
+    </div>
+    <div class="field">
+      <%= form.label :email %>
+      <%= form.email_field :email %>
+    </div>
+    <div class="field">
+      <%= form.label :address %>
+      <%= form.text_area :address %>
+    </div>
+
+    <div class="actions">
+      <%= form.submit "Submit" %>
+    </div>
+  <% end %>
 </div>

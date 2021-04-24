@@ -1,1 +1,24 @@
 <h1>Page Management</h1>
+
+<div>
+  <%= link_to "Add", new_admin_page_path, class: "button" %>
+</div>
+
+<table class="w-full">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Url</th>
+      <th>Published</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @pages.each do |page| %>
+      <tr>
+        <td><%= page.title %></td>
+        <td><%= page.url %></td>
+        <td><%= page.published_at %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
