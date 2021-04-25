@@ -31,6 +31,7 @@ gem 'clockwork'
 gem 'csv'
 gem 'devise'
 gem 'dotenv-rails'
+gem 'graphql'
 gem 'pundit'
 gem 'pushover'
 gem 'rack-attack'
@@ -44,6 +45,7 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'factory_bot'
   gem 'factory_bot_rails'
+  gem 'graphql-schema_comparator'
   gem 'prettier'
   gem 'pry-byebug'
   gem 'pry-rails'
@@ -75,3 +77,4 @@ group :test do
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
 end
+gem 'graphiql-rails', group: :development
