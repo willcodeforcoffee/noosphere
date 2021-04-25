@@ -18,7 +18,11 @@ Rails
                    }
       end
 
-    mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
+    if Rails.env.development?
+      mount GraphiQL::Rails::Engine, at: '/graphiql', graphql_path: '/graphql'
+      mount LetterOpenerWeb::Engine, at: '/letter_opener'
+    end
+    post '/graphql', to: 'graphql#execute'
     get 'home/index'
     root to: 'home#index'
     get 'not_authorized', to: 'home#not_authorized'
@@ -42,5 +46,7 @@ Rails
       get '/', to: 'home#index'
     end
 
-    Page.published.each { |page| get page.url, to: 'pages#show' } if Page.table_exists?
+    if Page.table_exists?
+      Page.published.each { |page| get page.url, to: 'pages#show' }
+    end
   end

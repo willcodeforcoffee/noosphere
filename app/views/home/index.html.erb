@@ -1,2 +1,20 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<div id="main">
+  <%=
+    react_component(
+      'App.App',
+      {
+        constants: {
+          env: Rails.env,
+          authDetails: {
+            isSignedIn: user_credential_signed_in?,
+          },
+          paths: {
+            graphql: graphql_path,
+            signIn: new_user_credential_session_path,
+            signOut: destroy_user_credential_session_path,
+          },
+        },
+      },
+    )
+  %>
+</div>
