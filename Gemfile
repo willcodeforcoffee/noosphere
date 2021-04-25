@@ -37,7 +37,6 @@ gem 'pushover'
 gem 'rack-attack'
 gem 'sidekiq'
 gem 'tailwindcss-rails'
-gem 'turbo-rails'
 gem 'view_component', require: 'view_component/engine'
 
 group :development, :test do
@@ -59,6 +58,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'graphiql-rails'
   gem 'letter_opener_web'
   gem 'listen', '~> 3.3'
   # Display performance information such as SQL time and flame graphs for each request in your browser.
@@ -77,4 +77,3 @@ group :test do
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
 end
-gem 'graphiql-rails', group: :development

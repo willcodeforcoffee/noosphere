@@ -315,8 +315,6 @@ GEM
     thor (1.1.0)
     tilt (2.0.10)
     timecop (0.9.4)
-    turbo-rails (0.5.9)
-      rails (>= 6.0.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.0.0)
@@ -390,7 +388,6 @@ DEPENDENCIES
   spring
   tailwindcss-rails
   timecop
-  turbo-rails
   view_component
   web-console (>= 4.1.0)
   webdrivers
