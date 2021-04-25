@@ -27,26 +27,30 @@ Rails
     root to: 'home#index'
     get 'not_authorized', to: 'home#not_authorized'
 
-    unless Rails.env.production?
-      get 'theme/index'
-      post 'theme/index'
-    end
+    # TODO: Remove when React in place
+    # unless Rails.env.production?
+    #   get 'theme/index'
+    #   post 'theme/index'
+    # end
 
-    # Site Administration Namespace
-    namespace :admin do
-      get 'home/index'
-      get '/', to: 'home#index'
+    # # Site Administration Namespace
+    # namespace :admin do
+    #   get 'home/index'
+    #   get '/', to: 'home#index'
 
-      resources :pages
-    end
+    #   resources :pages
+    # end
 
-    # Social Activity Namespace
-    namespace :social do
-      get 'home/index'
-      get '/', to: 'home#index'
-    end
+    # # Social Activity Namespace
+    # namespace :social do
+    #   get 'home/index'
+    #   get '/', to: 'home#index'
+    # end
 
     if Page.table_exists?
       Page.published.each { |page| get page.url, to: 'pages#show' }
     end
+
+    # React routes - So router routes will go to the right React page component
+    get '/test', to: 'home#index'
   end
