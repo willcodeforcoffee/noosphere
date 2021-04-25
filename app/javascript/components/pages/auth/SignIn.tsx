@@ -5,7 +5,6 @@ import {
   Form,
   InputEmailAddress,
   InputPasswordControl,
-  InputTextControl,
 } from "components/forms";
 import * as React from "react";
 
