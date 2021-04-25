@@ -8,5 +8,9 @@ interface AppContextProps {
 }
 
 export function AppContext(props: AppContextProps): JSX.Element {
-  return <GraphQLProvider graphqlEndpoint={props.constants.paths.graphql}>{props.children}</GraphQLProvider>;
+  return (
+    <GraphQLProvider graphqlEndpoint={props.constants.paths.graphql}>
+      {props.children}
+    </GraphQLProvider>
+  );
 }
