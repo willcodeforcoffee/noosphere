@@ -1,5 +1,12 @@
 import { Heading } from "components/content";
-import { Button, ButtonRow, Form, InputEmailAddress, InputPasswordControl, InputTextControl } from "components/forms";
+import {
+  Button,
+  ButtonRow,
+  Form,
+  InputEmailAddress,
+  InputPasswordControl,
+  InputTextControl,
+} from "components/forms";
 import * as React from "react";
 
 export function SignIn(): JSX.Element {
@@ -12,11 +19,13 @@ export function SignIn(): JSX.Element {
       <Heading level={1}>Sign In</Heading>
       <div className="lg:w-3/4 xl:w-1/2">
         <Form name="Test Form" title="Form Title" onSubmit={handleOnSubmit}>
-          <InputTextControl labelText="Simple Text Input" placeholder="Type something here..." />
-          <InputEmailAddress labelText="Email Address Input" placeholder="test@example.com" />
-          <InputPasswordControl labelText="Password Input" placeholder="type a p*ssw*rd" />
+          <InputEmailAddress
+            labelText="Email Address"
+            placeholder="test@example.com"
+          />
+          <InputPasswordControl labelText="Password" placeholder="****" />
           <ButtonRow>
-            <Button label="Login" purpose="primary" type="submit" />
+            <Button label="Submit" purpose="primary" type="submit" />
           </ButtonRow>
         </Form>
       </div>

@@ -60,7 +60,8 @@ export function NavBar(props: NavBarProps): JSX.Element {
   const authenticationButton = props.authDetails.isSignedIn ? (
     generateLogoutButton()
   ) : (
-    <NavBarExternalLink name="Login" href={props.paths.signIn} />
+    // <NavBarExternalLink name="Login" href={props.paths.signIn} />
+    <NavBarLink name="Sign In" route={Routes.Auth.SignIn} />
   );
 
   const navBar = (

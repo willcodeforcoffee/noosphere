@@ -53,4 +53,5 @@ Rails
 
     # React routes - So router routes will go to the right React page component
     get '/test', to: 'home#index'
+    get '/auth/sign_in', to: 'home#index'
   end
