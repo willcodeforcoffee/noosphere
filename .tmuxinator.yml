@@ -48,8 +48,6 @@ windows:
   - servers:
       layout: main-vertical
       panes:
-        - console: bin/rails c
-        - services: docker-compose up
         - rails: bin/rails s --binding=0.0.0.0
         - webpacker: bin/webpack-dev-server
         - sidekiq: bin/sidekiq
