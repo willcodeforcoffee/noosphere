@@ -1,8 +1,7 @@
 import { Button } from "./Button";
 import { ButtonRow } from "./ButtonRow";
 import { Form } from "./Form";
-import { InputEmailAddress } from "./InputEmailAddress";
-import { InputPasswordControl } from "./InputPasswordControl";
-import { InputTextControl } from "./InputTextControl";
+import { FormControlWrapper } from "./FormControlWrapper";
+import { FormError } from "./FormError";
 
-export { Button, ButtonRow, Form, InputEmailAddress, InputPasswordControl, InputTextControl };
+export { Button, ButtonRow, Form, FormControlWrapper, FormError };

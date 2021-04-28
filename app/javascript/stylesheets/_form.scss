@@ -31,16 +31,16 @@
       textarea {
         @apply w-full lg:w-3/4 xl:w-1/2;
       }
-      // input,
-      // textarea {
-      //   @apply bg-white border-gray-300 border rounded-sm px-1 py-2 w-full lg:w-3/4 xl:w-1/2;
-      //   &::placeholder {
-      //     @apply border-gray-400;
-      //   }
-      //   &:focus {
-      //     @apply outline-none shadow-sm;
-      //   }
-      // }
+      input,
+      textarea {
+        @apply bg-white border-gray-300 border px-1 py-2 w-full lg:w-3/4 xl:w-1/2 mt-1 block w-full rounded;
+        &::placeholder {
+          @apply border-gray-400;
+        }
+        &:focus {
+          @apply outline-none shadow-sm;
+        }
+      }
     }
 
     div.actions {

@@ -25,6 +25,7 @@
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-hook-form": "^7.3.3",
     "react-router-dom": "^5.2.0",
     "react_ujs": "^2.6.1",
     "stimulus": "^2.0.0",

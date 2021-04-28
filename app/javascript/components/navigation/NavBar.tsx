@@ -1,5 +1,4 @@
 import React, { useState, ReactNode } from "react";
-import { NavBarExternalLink } from "./NavBarExternalLink";
 import { NavBarLink } from "./NavBarLink";
 import { Routes } from "components/Router";
 import { AppPaths, AuthDetails } from "components/AppConstants";

@@ -3,26 +3,74 @@ import {
   Button,
   ButtonRow,
   Form,
-  InputEmailAddress,
-  InputPasswordControl,
+  FormControlWrapper,
+  FormError,
 } from "components/forms";
-import * as React from "react";
+import {
+  DeepMap,
+  FieldError,
+  SubmitErrorHandler,
+  SubmitHandler,
+  useForm,
+} from "react-hook-form";
+import React, { useState } from "react";
+
+type SignInFormValues = {
+  emailAddress: string;
+  password: string;
+};
 
 export function SignIn(): JSX.Element {
-  const handleOnSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
-    console.log("[handleOnSubmit]");
-    event.preventDefault();
+  const [formErrors, setFormErrors] = useState<
+    DeepMap<SignInFormValues, FieldError>
+  >();
+  const { register, handleSubmit, formState } = useForm<SignInFormValues>();
+  const onSubmit: SubmitHandler<SignInFormValues> = (
+    data: SignInFormValues
+  ): void => {
+    console.log("[handleOnSubmit]  data", data, formState);
   };
+
+  const onInvalid: SubmitErrorHandler<SignInFormValues> = (
+    errors: DeepMap<SignInFormValues, FieldError>
+  ) => {
+    console.log("[onInvalid]", errors);
+    setFormErrors(errors);
+  };
+
   return (
     <div id="SignIn">
       <Heading level={1}>Sign In</Heading>
       <div className="lg:w-3/4 xl:w-1/2">
-        <Form name="Test Form" title="Form Title" onSubmit={handleOnSubmit}>
-          <InputEmailAddress
-            labelText="Email Address"
-            placeholder="test@example.com"
+        <Form
+          name="Sign in"
+          title="Provide your application credentials"
+          onSubmit={handleSubmit(onSubmit, onInvalid)}
+        >
+          <FormError<SignInFormValues>
+            message="Please correct the form errors"
+            errors={formErrors}
           />
-          <InputPasswordControl labelText="Password" placeholder="****" />
+          <FormControlWrapper labelText="Email Address">
+            <input
+              type="email"
+              placeholder="test@example.com"
+              className="mt-1 block w-full rounded"
+              {...register("emailAddress", {
+                required: "Please provide your email address",
+              })}
+            />
+          </FormControlWrapper>
+          <FormControlWrapper labelText="Password">
+            <input
+              type="password"
+              placeholder="****"
+              className="mt-1 block w-full rounded"
+              {...register("password", {
+                required: "Please provide your password",
+              })}
+            />
+          </FormControlWrapper>
           <ButtonRow>
             <Button label="Submit" purpose="primary" type="submit" />
           </ButtonRow>
