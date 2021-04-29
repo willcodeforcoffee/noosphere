@@ -5,7 +5,7 @@ interface ButtonRowProps {
 }
 
 function ButtonRow(props: ButtonRowProps): JSX.Element {
-  return <div className="block pt-2">{props.children}</div>;
+  return <div className="buttonRow">{props.children}</div>;
 }
 
 export { ButtonRow };

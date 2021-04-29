@@ -1,9 +1,21 @@
 /* eslint-disable no-console */
 import { Heading } from "components/content";
-import { Button, ButtonRow, Form, FormControlWrapper } from "components/forms";
-import React, { FormEvent } from "react";
+import {
+  Button,
+  ButtonRow,
+  Form,
+  FormControlWrapper,
+  FormError,
+} from "components/forms";
+import React, { FormEvent, useState } from "react";
 import { BreakpointDebugger } from "components/utils/BreakpointDebugger";
-import { SubmitHandler, useForm } from "react-hook-form";
+import {
+  DeepMap,
+  FieldError,
+  SubmitErrorHandler,
+  SubmitHandler,
+  useForm,
+} from "react-hook-form";
 
 function handleOnSubmit(event: FormEvent<HTMLFormElement>) {
   console.log("onSubmit", event);
@@ -14,17 +26,28 @@ function handleClick(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
 }
 
 type TestFormValues = {
+  textMessage: string;
   emailAddress: string;
   password: string;
 };
 
 export function Test(): JSX.Element {
   console.log("Test");
+  const [formErrors, setFormErrors] = useState<
+    DeepMap<TestFormValues, FieldError>
+  >();
   const { register, handleSubmit, formState } = useForm<TestFormValues>();
   const onSubmit: SubmitHandler<TestFormValues> = (
     data: TestFormValues
   ): void => {
     console.log("[handleOnSubmit]  data", data, formState);
+  };
+
+  const onInvalid: SubmitErrorHandler<TestFormValues> = (
+    errors: DeepMap<TestFormValues, FieldError>
+  ) => {
+    console.log("[onInvalid]", errors);
+    setFormErrors(errors);
   };
 
   return (
@@ -40,28 +63,20 @@ export function Test(): JSX.Element {
       <div className="lg:w-3/4">
         <Form
           name="Test Form"
-          title="Form Title"
+          title="Form Title / Legend"
           onSubmit={handleSubmit(handleOnSubmit)}
         >
-          {/* TODO: This should be the regualar input controls instead */}
-          {/* <InputTextControl
-            labelText=""
-            placeholder=""
+          <FormError<TestFormValues>
+            message="Please correct the form errors"
+            errors={formErrors}
           />
-          <InputEmailAddress
-            labelText=""
-            placeholder="test@example.com"
-          />
-          <InputPasswordControl
-            labelText=""
-            placeholder=""
-          /> */}
+
           <FormControlWrapper labelText="Simple Text Input">
             <input
               type="text"
               placeholder="Type something here..."
-              {...register("emailAddress", {
-                required: "Please provide your email address",
+              {...register("textMessage", {
+                required: "Please provide some text",
               })}
             />
           </FormControlWrapper>
@@ -79,13 +94,14 @@ export function Test(): JSX.Element {
               type="email"
               placeholder="type a p*ssw*rd"
               {...register("emailAddress", {
-                required: "Please provide your email address",
+                required: "Please provide your password",
               })}
             />
           </FormControlWrapper>
           <ButtonRow>
             <Button label="Primary" purpose="primary" onClick={handleClick} />
             <Button label="Danger" purpose="danger" onClick={handleClick} />
+            <Button label="Submit" type="submit" purpose="primary" />
           </ButtonRow>
         </Form>
       </div>

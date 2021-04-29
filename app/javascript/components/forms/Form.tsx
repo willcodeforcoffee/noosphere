@@ -7,25 +7,12 @@ interface FormProps {
   children?: ReactNode | ReactNode[];
 }
 
-const FORM_CLASSNAMES = [
-  "mb-0",
-  "p-1",
-  "bg-gray-100",
-  "box-border",
-  "border",
-  "rounded",
-  "border-gray-500",
-  "shadow-sm",
-].join(" ");
+const FORM_CLASSNAMES = [].join(" ");
 
 function Form(props: FormProps): JSX.Element {
   const childControls: ReactNode[] = [];
   if (props.title) {
-    childControls.unshift(
-      <legend key="legend" className="text-lg font-bold block pt-1">
-        {props.title}
-      </legend>
-    );
+    childControls.unshift(<legend key="legend">{props.title}</legend>);
   }
 
   if (props.children instanceof Array) {
@@ -43,7 +30,11 @@ function Form(props: FormProps): JSX.Element {
   };
 
   return (
-    <form onSubmit={internalOnSubmit} name={props.name} className={FORM_CLASSNAMES}>
+    <form
+      onSubmit={internalOnSubmit}
+      name={props.name}
+      className={FORM_CLASSNAMES}
+    >
       {childControls}
     </form>
   );
