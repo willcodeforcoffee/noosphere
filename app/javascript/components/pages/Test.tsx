@@ -16,10 +16,8 @@ import {
   SubmitHandler,
   useForm,
 } from "react-hook-form";
-
-function handleOnSubmit(event: FormEvent<HTMLFormElement>) {
-  console.log("onSubmit", event);
-}
+import { PushoverNotificationDocument } from "components/graphql/SchemaGenerated";
+import { useMutation } from "@apollo/client";
 
 function handleClick(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
   console.log("handleClick", event);
@@ -36,11 +34,23 @@ export function Test(): JSX.Element {
   const [formErrors, setFormErrors] = useState<
     DeepMap<TestFormValues, FieldError>
   >();
-  const { register, handleSubmit, formState } = useForm<TestFormValues>();
+
+  const {
+    register,
+    handleSubmit,
+    formState,
+    getValues,
+  } = useForm<TestFormValues>();
+
+  const [sendMessage] = useMutation(PushoverNotificationDocument, {
+    variables: { message: getValues().textMessage },
+  });
+
   const onSubmit: SubmitHandler<TestFormValues> = (
     data: TestFormValues
   ): void => {
-    console.log("[handleOnSubmit]  data", data, formState);
+    console.log("[onSubmit]  data", data, getValues());
+    sendMessage({ variables: { message: getValues().textMessage } });
   };
 
   const onInvalid: SubmitErrorHandler<TestFormValues> = (
@@ -64,7 +74,7 @@ export function Test(): JSX.Element {
         <Form
           name="Test Form"
           title="Form Title / Legend"
-          onSubmit={handleSubmit(handleOnSubmit)}
+          onSubmit={handleSubmit(onSubmit, onInvalid)}
         >
           <FormError<TestFormValues>
             message="Please correct the form errors"
@@ -91,9 +101,9 @@ export function Test(): JSX.Element {
           </FormControlWrapper>
           <FormControlWrapper labelText="Password Input">
             <input
-              type="email"
+              type="password"
               placeholder="type a p*ssw*rd"
-              {...register("emailAddress", {
+              {...register("password", {
                 required: "Please provide your password",
               })}
             />

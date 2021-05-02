@@ -1,0 +1,5 @@
+mutation PushoverNotification($message: String!) {
+  pushoverNotification(input: { message: $message }) {
+    result
+  }
+}
