@@ -48,7 +48,7 @@ windows:
   - servers:
       layout: main-vertical
       panes:
-        - rails: bin/rails s --binding=0.0.0.0
+        - rails: bin/rails s
         - webpacker: bin/webpack-dev-server
         - sidekiq: bin/sidekiq
         - clockwork: bin/clockwork config/clockwork.rb
