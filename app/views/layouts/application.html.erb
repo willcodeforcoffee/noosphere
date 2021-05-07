@@ -2,20 +2,15 @@
 <html>
   <head>
     <title>Noosphere</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= stylesheet_pack_tag "application", "data-turbo-track": "reload" %>
+    <%= stylesheet_pack_tag 'application', media: 'all' %>
+    <%= javascript_pack_tag 'application' %>
     <%= yield :head %>
   </head>
   <body class="container justify-center">
-    <%= render(NavBarComponent.new(current_user: @current_user)) %>
-    <% flash.each do |type, msg| %>
-      <%= render(AlertComponent.new(level: flash_type_to_alert_level(type), message: msg)) %>
-    <% end %>
-    <%= content_for?(:main) ? yield(:main) : yield  %>
+    <%= content_for?(:body) ? yield(:body) : yield  %>
   </body>
 </html>

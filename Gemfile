@@ -31,12 +31,13 @@ gem 'clockwork'
 gem 'csv'
 gem 'devise'
 gem 'dotenv-rails'
+gem 'graphql'
 gem 'pundit'
 gem 'pushover'
 gem 'rack-attack'
+gem 'react-rails'
 gem 'sidekiq'
 gem 'tailwindcss-rails'
-gem 'turbo-rails'
 gem 'view_component', require: 'view_component/engine'
 
 group :development, :test do
@@ -44,6 +45,7 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'factory_bot'
   gem 'factory_bot_rails'
+  gem 'graphql-schema_comparator'
   gem 'prettier'
   gem 'pry-byebug'
   gem 'pry-rails'
@@ -57,6 +59,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'graphiql-rails'
   gem 'letter_opener_web'
   gem 'listen', '~> 3.3'
   # Display performance information such as SQL time and flame graphs for each request in your browser.

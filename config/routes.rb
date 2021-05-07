@@ -18,29 +18,40 @@ Rails
                    }
       end
 
-    mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
+    if Rails.env.development?
+      mount GraphiQL::Rails::Engine, at: '/graphiql', graphql_path: '/graphql'
+      mount LetterOpenerWeb::Engine, at: '/letter_opener'
+    end
+    post '/graphql', to: 'graphql#execute'
     get 'home/index'
     root to: 'home#index'
     get 'not_authorized', to: 'home#not_authorized'
 
-    unless Rails.env.production?
-      get 'theme/index'
-      post 'theme/index'
+    # TODO: Remove when React in place
+    # unless Rails.env.production?
+    #   get 'theme/index'
+    #   post 'theme/index'
+    # end
+
+    # # Site Administration Namespace
+    # namespace :admin do
+    #   get 'home/index'
+    #   get '/', to: 'home#index'
+
+    #   resources :pages
+    # end
+
+    # # Social Activity Namespace
+    # namespace :social do
+    #   get 'home/index'
+    #   get '/', to: 'home#index'
+    # end
+
+    if Page.table_exists?
+      Page.published.each { |page| get page.url, to: 'pages#show' }
     end
 
-    # Site Administration Namespace
-    namespace :admin do
-      get 'home/index'
-      get '/', to: 'home#index'
-
-      resources :pages
-    end
-
-    # Social Activity Namespace
-    namespace :social do
-      get 'home/index'
-      get '/', to: 'home#index'
-    end
-
-    Page.published.each { |page| get page.url, to: 'pages#show' } if Page.table_exists?
+    # React routes - So router routes will go to the right React page component
+    get '/test', to: 'home#index'
+    get '/auth/sign_in', to: 'home#index'
   end
