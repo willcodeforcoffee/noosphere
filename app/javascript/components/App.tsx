@@ -1,3 +1,4 @@
+import { CssBaseline } from "@material-ui/core";
 import React from "react";
 import { AppConstants } from "./AppConstants";
 import { AppContext } from "./AppContext";
@@ -10,7 +11,8 @@ interface AppProps {
 function App(props: AppProps): JSX.Element {
   console.log("[App]");
   return (
-    <div id="App" className="container w-screen">
+    <div id="App">
+      <CssBaseline />
       <AppContext constants={props.constants}>
         <Router
           authDetails={props.constants.authDetails}
