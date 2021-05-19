@@ -8,6 +8,7 @@ import {
 import MenuIcon from "@material-ui/icons/Menu";
 import { AppPaths, AuthDetails } from "components/AppConstants";
 import React from "react";
+import { useStyles } from "./NavBar.style";
 
 interface NavBarProps {
   authDetails: AuthDetails;
@@ -16,6 +17,7 @@ interface NavBarProps {
 
 function NavBar(props: NavBarProps): JSX.Element {
   console.log("[NavBar]", props);
+  const classes = useStyles();
 
   function onLoginClick() {
     window.location.pathname = props.paths.signIn;
@@ -23,16 +25,19 @@ function NavBar(props: NavBarProps): JSX.Element {
 
   return (
     <AppBar position="static">
-      <Toolbar>
+      <Toolbar className={classes.toolbar}>
         <IconButton
           edge="start"
-          // className={classes.menuButton}
+          className={classes.menuButton}
           color="inherit"
           aria-label="menu"
         >
           <MenuIcon />
         </IconButton>
-        <Typography variant="h6">Noösphere</Typography>
+        <Typography className={classes.heading} variant="h6">
+          Noösphere
+        </Typography>
+        {/* <Typography className={classes.title}>Page Title</Typography> */}
         {!props.authDetails.isSignedIn && (
           <Button color="inherit" onClick={onLoginClick}>
             Sign In
