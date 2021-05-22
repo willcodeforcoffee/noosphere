@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useViewportWidth } from "./useViewportWidth";
 import { useTailwindBreakpoint } from "./useTailwindBreakpoint";
-import { Heading } from "components/content";
+import { Typography } from "@material-ui/core";
 
 function ViewportWidthDebugger(): JSX.Element {
   const vw = useViewportWidth();
@@ -36,13 +36,15 @@ function CurrentBreakPoint(): JSX.Element {
     "2xl:bg-red-600",
     "2xl:text-black",
   ];
-  return <p className={classNames.join(" ")}>Current Breakpoint {breakpoint}</p>;
+  return (
+    <p className={classNames.join(" ")}>Current Breakpoint {breakpoint}</p>
+  );
 }
 
 function BreakpointDebugger(): JSX.Element {
   return (
     <div className="w-full">
-      <Heading level={2}>Breakpoint Debugger</Heading>
+      <Typography variant="h2">Breakpoint Debugger</Typography>
       <ViewportWidthDebugger />
       <CurrentBreakPoint />
       <TailwindBreakpointDebugger />
