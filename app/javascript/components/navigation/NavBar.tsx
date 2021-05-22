@@ -1,6 +1,6 @@
 import {
   AppBar,
-  Button,
+  Link,
   IconButton,
   Toolbar,
   Typography,
@@ -9,6 +9,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import { AppPaths, AuthDetails } from "components/AppConstants";
 import React from "react";
 import { useStyles } from "./NavBar.style";
+import { Routes } from "components/Router";
 
 interface NavBarProps {
   authDetails: AuthDetails;
@@ -37,11 +38,10 @@ function NavBar(props: NavBarProps): JSX.Element {
         <Typography className={classes.heading} variant="h6">
           Noösphere
         </Typography>
-        {/* <Typography className={classes.title}>Page Title</Typography> */}
         {!props.authDetails.isSignedIn && (
-          <Button color="inherit" onClick={onLoginClick}>
+          <Link color="inherit" href={Routes.Auth.SignIn}>
             Sign In
-          </Button>
+          </Link>
         )}
       </Toolbar>
     </AppBar>

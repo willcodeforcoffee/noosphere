@@ -1,12 +1,5 @@
-import { Heading } from "components/content";
 import {
-  Button,
-  ButtonRow,
-  Form,
-  FormControlWrapper,
-  FormError,
-} from "components/forms";
-import {
+  Controller,
   DeepMap,
   FieldError,
   SubmitErrorHandler,
@@ -14,6 +7,32 @@ import {
   useForm,
 } from "react-hook-form";
 import React, { useState } from "react";
+import {
+  Alert,
+  Button,
+  Checkbox,
+  Container,
+  FormControlLabel,
+  makeStyles,
+  TextField,
+  Typography,
+} from "@material-ui/core";
+
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    marginTop: theme.spacing(8),
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+  },
+  form: {
+    width: "100%", // Fix IE 11 issue.
+    marginTop: theme.spacing(1),
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+  },
+}));
 
 type SignInFormValues = {
   emailAddress: string;
@@ -24,14 +43,27 @@ export function SignIn(): JSX.Element {
   const [formErrors, setFormErrors] = useState<
     DeepMap<SignInFormValues, FieldError>
   >();
-  const { register, handleSubmit, formState } = useForm<SignInFormValues>();
-  const onSubmit: SubmitHandler<SignInFormValues> = (
-    data: SignInFormValues
-  ): void => {
-    console.log("[handleOnSubmit]  data", data, formState);
+  const { control, handleSubmit, formState } = useForm<SignInFormValues>();
+  const classes = useStyles();
+
+  const onSubmit: SubmitHandler<SignInFormValues> = async (
+    data: SignInFormValues,
+    event: React.BaseSyntheticEvent
+  ) => {
+    console.log("[handleOnSubmit]  data", data);
+    console.log("[handleOnSubmit]  event", event);
+    console.log("[handleOnSubmit]  formState", formState);
+    const userCredential = {
+      user_credential: {
+        email: data.emailAddress,
+        password: data.emailAddress,
+      },
+    };
+    console.log("[handleOnSubmit]  userCredential", userCredential);
+    return true;
   };
 
-  const onInvalid: SubmitErrorHandler<SignInFormValues> = (
+  const onInvalid: SubmitErrorHandler<SignInFormValues> = async (
     errors: DeepMap<SignInFormValues, FieldError>
   ) => {
     console.log("[onInvalid]", errors);
@@ -39,43 +71,94 @@ export function SignIn(): JSX.Element {
   };
 
   return (
-    <div id="SignIn">
-      <Heading level={1}>Sign In</Heading>
-      <div className="lg:w-3/4 xl:w-1/2">
-        <Form
-          name="Sign in"
-          title="Provide your application credentials"
+    <Container maxWidth="xs" component="main">
+      <div className={classes.paper}>
+        <Typography component="h1" variant="h5">
+          Sign In
+        </Typography>
+        <form
+          id="new_user_credential"
+          className={classes.form}
           onSubmit={handleSubmit(onSubmit, onInvalid)}
+          action="/user_credentials/sign_in"
+          method="POST"
+          acceptCharset="UTF-8"
+          data-turbo="false"
         >
-          <FormError<SignInFormValues>
-            message="Please correct the form errors"
-            errors={formErrors}
+          <Controller
+            name="emailAddress"
+            control={control}
+            defaultValue=""
+            rules={{
+              required: "Please provide your email address",
+            }}
+            render={({ field }) => (
+              <TextField
+                variant="outlined"
+                margin="normal"
+                fullWidth
+                id="email"
+                label="Email Address"
+                name="user_credential[email]"
+                autoComplete="email"
+                autoFocus
+                error={!!formErrors?.emailAddress}
+                helperText={
+                  formErrors?.emailAddress
+                    ? formErrors?.emailAddress?.message
+                    : null
+                }
+                {...field}
+              />
+            )}
           />
-          <FormControlWrapper labelText="Email Address">
-            <input
-              type="email"
-              placeholder="test@example.com"
-              className="mt-1 block w-full rounded"
-              {...register("emailAddress", {
-                required: "Please provide your email address",
-              })}
-            />
-          </FormControlWrapper>
-          <FormControlWrapper labelText="Password">
-            <input
-              type="password"
-              placeholder="****"
-              className="mt-1 block w-full rounded"
-              {...register("password", {
-                required: "Please provide your password",
-              })}
-            />
-          </FormControlWrapper>
-          <ButtonRow>
-            <Button label="Submit" purpose="primary" type="submit" />
-          </ButtonRow>
-        </Form>
+
+          <Controller
+            name="password"
+            control={control}
+            defaultValue=""
+            rules={{
+              required: "Please provide your password",
+            }}
+            render={({ field }) => (
+              <TextField
+                variant="outlined"
+                margin="normal"
+                fullWidth
+                name="user_credential[password]"
+                label="Password"
+                type="password"
+                id="password"
+                autoComplete="current-password"
+                error={!!formErrors?.password}
+                helperText={
+                  formErrors?.password ? formErrors?.password?.message : null
+                }
+                {...field}
+              />
+            )}
+          />
+          <FormControlLabel
+            control={
+              <Checkbox
+                value="remember"
+                color="primary"
+                name="user_credential[remember_me]"
+              />
+            }
+            label="Remember me"
+          />
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+          >
+            Sign In
+          </Button>
+        </form>
       </div>
-    </div>
+    </Container>
   );
 }
