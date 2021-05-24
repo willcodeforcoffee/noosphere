@@ -20,10 +20,6 @@ function NavBar(props: NavBarProps): JSX.Element {
   console.log("[NavBar]", props);
   const classes = useStyles();
 
-  function onLoginClick() {
-    window.location.pathname = props.paths.signIn;
-  }
-
   return (
     <AppBar position="static">
       <Toolbar className={classes.toolbar}>
@@ -35,7 +31,7 @@ function NavBar(props: NavBarProps): JSX.Element {
         >
           <MenuIcon />
         </IconButton>
-        <Typography className={classes.heading} variant="h6">
+        <Typography className={classes.heading} variant="h6" component="p">
           Noösphere
         </Typography>
         {!props.authDetails.isSignedIn && (
