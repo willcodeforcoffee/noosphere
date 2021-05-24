@@ -37,7 +37,6 @@ gem 'pushover'
 gem 'rack-attack'
 gem 'react-rails'
 gem 'sidekiq'
-gem 'tailwindcss-rails'
 gem 'view_component', require: 'view_component/engine'
 
 group :development, :test do
