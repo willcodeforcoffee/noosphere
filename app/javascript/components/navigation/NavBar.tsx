@@ -6,19 +6,22 @@ import {
   Typography,
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
-import { AppPaths, AuthDetails } from "components/AppConstants";
+import { AppPaths } from "components/AppConstants";
 import React from "react";
 import { useStyles } from "./NavBar.style";
 import { Routes } from "components/Router";
+import { useAuthInfo } from "components/providers/AuthProvider";
 
 interface NavBarProps {
-  authDetails: AuthDetails;
   paths: AppPaths;
 }
 
 function NavBar(props: NavBarProps): JSX.Element {
   console.log("[NavBar]", props);
   const classes = useStyles();
+  const authInfo = useAuthInfo();
+  const isLoggedIn = authInfo.token !== undefined;
+  console.log("[NavBar]  authInfo", authInfo);
 
   return (
     <AppBar position="static">
@@ -34,7 +37,7 @@ function NavBar(props: NavBarProps): JSX.Element {
         <Typography className={classes.heading} variant="h6" component="p">
           Noösphere
         </Typography>
-        {!props.authDetails.isSignedIn && (
+        {!isLoggedIn && (
           <Link color="inherit" href={Routes.Auth.SignIn}>
             Sign In
           </Link>
