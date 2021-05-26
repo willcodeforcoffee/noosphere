@@ -8,5 +8,6 @@ namespace :graphql do
       NoosphereSchema.to_definition,
     )
     puts "Updated schema at #{NoosphereSchema::SCHEMA_PATH}"
+    `yarn run graphql:updateTypes`
   end
 end
