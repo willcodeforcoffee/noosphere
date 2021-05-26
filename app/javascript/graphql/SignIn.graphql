@@ -1,4 +1,4 @@
-mutation SigninMutation($emailAddress: String!, $password: String!) {
+mutation SignIn($emailAddress: String!, $password: String!) {
   signin(input: { emailAddress: $emailAddress, password: $password }) {
     authToken
   }

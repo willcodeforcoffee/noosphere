@@ -52,9 +52,11 @@ const AuthProvider = (props: AuthProviderProps) => {
   );
 };
 
+const useAuthContext = () => useContext(AuthContext);
+
 const useAuthInfo = () => {
   const { authInfo } = useContext(AuthContext);
   return authInfo;
 };
 
-export { AuthInfo, AuthProvider, useAuthInfo };
+export { AuthInfo, AuthProvider, useAuthContext, useAuthInfo };

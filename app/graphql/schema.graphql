@@ -69,4 +69,5 @@ type SigninPayload {
   A unique identifier for the client performing the mutation.
   """
   clientMutationId: String
+  username: String!
 }
