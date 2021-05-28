@@ -6,6 +6,7 @@ export interface AppPaths {
 
 export interface AuthDetails {
   isSignedIn: boolean;
+  username: string;
 }
 
 export interface AppConstants {

@@ -7,6 +7,7 @@
           env: Rails.env,
           authDetails: {
             isSignedIn: user_credential_signed_in?,
+            username: @current_user.username,
           },
           paths: {
             graphql: graphql_path,

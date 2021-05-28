@@ -42,6 +42,9 @@ function NavBar(props: NavBarProps): JSX.Element {
             Sign In
           </Button>
         )}
+        {props.authDetails.isSignedIn && (
+          <Typography>{props.authDetails.username}</Typography>
+        )}
       </Toolbar>
     </AppBar>
   );
