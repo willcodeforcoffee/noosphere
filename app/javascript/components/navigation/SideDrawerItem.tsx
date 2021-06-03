@@ -17,7 +17,6 @@ function SideDrawerItem(props: SideDrawerItemProps) {
   const renderLink = useMemo(
     () =>
       forwardRef(function Link(itemProps, ref) {
-        console.log("[renderLink]", itemProps);
         return <RouterLink to={to} ref={ref} {...itemProps} />;
       }),
     [to]

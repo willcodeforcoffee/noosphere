@@ -10,6 +10,7 @@ import {
 } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
 import HomeIcon from "@material-ui/icons/Home";
+import HomeOutlinedIcon from "@material-ui/icons/HomeOutlined";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import MailIcon from "@material-ui/icons/Mail";
 import * as React from "react";
@@ -23,7 +24,6 @@ interface SideDrawerProps {
 }
 
 function SideDrawer(props: SideDrawerProps): JSX.Element {
-  console.log("[SideDrawer]", props);
   const classes = useStyles();
   return (
     <Drawer
@@ -48,6 +48,11 @@ function SideDrawer(props: SideDrawerProps): JSX.Element {
       </div>
       <Divider />
       <List>
+        <SideDrawerItem
+          text="Home"
+          icon={<HomeOutlinedIcon />}
+          to={Routes.Home}
+        />
         <SideDrawerItem
           text="Admin Home"
           icon={<HomeIcon />}

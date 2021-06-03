@@ -17,7 +17,6 @@ interface NavBarProps {
 }
 
 function NavBar(props: NavBarProps): JSX.Element {
-  console.log("[NavBar]", props);
   const classes = useStyles();
 
   function onLoginClick() {

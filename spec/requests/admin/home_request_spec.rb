@@ -18,7 +18,6 @@ RSpec.describe 'Admin::Homes', type: :request do
 
       it 'returns http success' do
         sign_in user.user_credential
-        binding.pry
         get admin_home_index_path
         expect(response).to have_http_status(:success)
       end
