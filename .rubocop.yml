@@ -40,6 +40,7 @@ Metrics/MethodLength:
   Enabled: true
   Max: 15
   Exclude:
+    - "app/controllers/graphql_controller.rb"
     - "db/**/*"
 
 Style/BlockComments:

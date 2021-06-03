@@ -28,7 +28,6 @@ class GraphqlController < ApplicationController
   private
 
   # Handle variables in form data, JSON body, or a blank value
-  # rubocop:disable Metrics/MethodLength temporarily until this can get refactored
   def prepare_variables(variables_param)
     case variables_param
     when String
@@ -43,8 +42,6 @@ class GraphqlController < ApplicationController
       raise ArgumentError, "Unexpected parameter: #{variables_param}"
     end
   end
-
-  # rubocop:enable Metrics/MethodLength
 
   def handle_error_in_development(e)
     logger.error e.message
