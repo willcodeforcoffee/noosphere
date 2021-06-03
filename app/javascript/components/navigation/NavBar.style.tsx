@@ -2,6 +2,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   toolbar: {
+    ...theme.mixins.toolbar,
     paddingRight: 24, // keep right padding when drawer closed
   },
   menuButton: {},

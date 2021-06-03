@@ -13,6 +13,7 @@ import { useStyles } from "./NavBar.style";
 interface NavBarProps {
   authDetails: AuthDetails;
   paths: AppPaths;
+  onMenuIconClick?: () => void;
 }
 
 function NavBar(props: NavBarProps): JSX.Element {
@@ -31,6 +32,7 @@ function NavBar(props: NavBarProps): JSX.Element {
           className={classes.menuButton}
           color="inherit"
           aria-label="menu"
+          onClick={props.onMenuIconClick}
         >
           <MenuIcon />
         </IconButton>

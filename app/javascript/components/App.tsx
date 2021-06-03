@@ -9,7 +9,6 @@ interface AppProps {
 }
 
 function App(props: AppProps): JSX.Element {
-  console.log("[App]");
   return (
     <div id="App">
       <CssBaseline />
