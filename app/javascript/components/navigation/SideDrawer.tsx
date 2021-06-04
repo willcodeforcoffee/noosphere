@@ -34,6 +34,7 @@ function SideDrawer(props: SideDrawerProps): JSX.Element {
       }}
       anchor="left"
       open={props.isOpen}
+      onClose={props.onCloseDrawer}
     >
       <div className={classes.toolbar}>
         <IconButton
@@ -47,39 +48,21 @@ function SideDrawer(props: SideDrawerProps): JSX.Element {
         </IconButton>
       </div>
       <Divider />
-      <List>
-        <SideDrawerItem
-          text="Home"
-          icon={<HomeOutlinedIcon />}
-          to={Routes.Home}
-        />
-        <SideDrawerItem
-          text="Admin Home"
-          icon={<HomeIcon />}
-          to={Routes.Admin.Home}
-        />
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => {
-          return (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          );
-        })}
-      </List>
-      <Divider />
-      <List>
-        {["All mail", "Trash", "Spam"].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
+      <div role="presentation" onClick={props.onCloseDrawer}>
+        <List>
+          <SideDrawerItem
+            text="Home"
+            icon={<HomeOutlinedIcon />}
+            to={Routes.Home}
+          />
+          <SideDrawerItem
+            text="Admin Home"
+            icon={<HomeIcon />}
+            to={Routes.Admin.Home}
+          />
+        </List>
+        <Divider />
+      </div>
     </Drawer>
   );
 }
