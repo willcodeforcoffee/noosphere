@@ -14,7 +14,25 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
+  /** An ISO 8601-encoded datetime */
+  ISO8601DateTime: any;
+  Interval: any;
 };
+
+export type Feed = {
+  __typename?: 'Feed';
+  createdAt: Scalars['ISO8601DateTime'];
+  id: Scalars['ID'];
+  lastDocument?: Maybe<Scalars['String']>;
+  lastPollAt?: Maybe<Scalars['ISO8601DateTime']>;
+  name: Scalars['String'];
+  nextPollAt?: Maybe<Scalars['ISO8601DateTime']>;
+  pollingInterval?: Maybe<Scalars['Interval']>;
+  updatedAt: Scalars['ISO8601DateTime'];
+  url: Scalars['String'];
+};
+
+
 
 export type Mutation = {
   __typename?: 'Mutation';
@@ -45,6 +63,8 @@ export type PushoverNotificationPayload = {
 
 export type Query = {
   __typename?: 'Query';
+  /** Fetch feeds in the system */
+  feeds?: Maybe<Feed>;
   /** An example field added by the generator */
   testField: Scalars['String'];
 };

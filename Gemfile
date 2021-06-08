@@ -36,6 +36,7 @@ gem 'pundit'
 gem 'pushover'
 gem 'rack-attack'
 gem 'react-rails'
+gem 'rss'
 gem 'sidekiq'
 
 group :development, :test do

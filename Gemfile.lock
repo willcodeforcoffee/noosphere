@@ -261,6 +261,8 @@ GEM
       rspec-mocks (~> 3.10)
       rspec-support (~> 3.10)
     rspec-support (3.10.2)
+    rss (0.2.9)
+      rexml
     rubocop (1.16.0)
       parallel (~> 1.10)
       parser (>= 3.0.0.0)
@@ -386,6 +388,7 @@ DEPENDENCIES
   redis (~> 4.0)
   rspec
   rspec-rails
+  rss
   rubocop
   rubocop-rails
   rubocop-rspec

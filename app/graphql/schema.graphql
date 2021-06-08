@@ -1,3 +1,22 @@
+type Feed {
+  createdAt: ISO8601DateTime!
+  id: ID!
+  lastDocument: String
+  lastPollAt: ISO8601DateTime
+  name: String!
+  nextPollAt: ISO8601DateTime
+  pollingInterval: Interval
+  updatedAt: ISO8601DateTime!
+  url: String!
+}
+
+"""
+An ISO 8601-encoded datetime
+"""
+scalar ISO8601DateTime
+
+scalar Interval
+
 type Mutation {
   pushoverNotification(
     """
@@ -35,6 +54,11 @@ type PushoverNotificationPayload {
 }
 
 type Query {
+  """
+  Fetch feeds in the system
+  """
+  feeds: Feed
+
   """
   An example field added by the generator
   """
