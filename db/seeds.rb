@@ -3,5 +3,6 @@
 puts 'Invoking Database seed'
 FeatureSeeder.new.seed
 UserSeeder.new.seed
+FeedSeeder.new.seed
 
 puts 'Database seed complete'
