@@ -40,11 +40,12 @@ class Feed < ApplicationRecord
 
   def process_feed(raw_doc)
     parsed_doc = RSS::Parser.parse(raw_doc)
-    self.name = parsed_doc&.title&.content unless self.name.present?
+    self.name = parsed_doc&.title&.content if self.name.blank?
     self.last_document = raw_doc
 
     parsed_doc
-  rescue RSS::NotWellFormedError e
+  rescue RSS::NotWellFormedError => e
     # TODO: Handle errors
+    logger.error "Feed parsing failed with #{e}"
   end
 end

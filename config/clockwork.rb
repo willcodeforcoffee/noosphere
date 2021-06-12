@@ -19,4 +19,8 @@ module Clockwork
   #   every(1.day, 'CurrencyUpdate', :at => '00:00', :tz => 'UTC') do
   #     CurrencyUpdateWorker.new.update_all
   #   end
+
+  every(5.minutes, 'FeedPollScheduleWorker') do
+    FeedPollScheduleWorker.perform_async
+  end
 end
