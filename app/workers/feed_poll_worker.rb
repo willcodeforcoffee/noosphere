@@ -11,10 +11,6 @@ class FeedPollWorker
     end
 
     # TODO: Scan for an RSS feed
-    URI.open(feed.url) do |feed_document|
-      rss_feed = RSS::Parser.parse(feed_document)
-
-      feed.schedule_next_poll
-    end
+    feed.poll
   end
 end
