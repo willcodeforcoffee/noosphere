@@ -11,12 +11,26 @@ class Feed < ApplicationRecord
         -> { unscheduled.or(Feed.where('next_poll_at <= ?', DateTime.now.utc)) }
 
   def poll
-    raw_doc = read_document
+    feed_doc = fetch_feed_document
 
-    process_feed(raw_doc)
+    process_feed(feed_doc)
 
     schedule_next_poll
     save
+  end
+
+  def process_feed(feed_doc)
+    parsed_doc = RSS::Parser.parse(feed_doc)
+    self.name = parsed_doc&.title&.content if self.name.blank?
+    self.last_document = feed_doc
+
+    parsed_doc.items.each { |item| FeedEntry.process_feed_item(item) }
+
+    parsed_doc
+  rescue RSS::NotWellFormedError => e
+    # TODO: Handle errors
+    logger.error "Feed parsing failed with #{e}"
+    nil
   end
 
   def schedule_next_poll
@@ -24,9 +38,7 @@ class Feed < ApplicationRecord
     self.next_poll_at = (self.last_poll_at + self.polling_interval).utc
   end
 
-  private
-
-  def read_document
+  def fetch_feed_document
     raw_doc = ''
     URI.open(self.url) do |f|
       f.each_line do |line|
@@ -38,14 +50,7 @@ class Feed < ApplicationRecord
     raw_doc
   end
 
-  def process_feed(raw_doc)
-    parsed_doc = RSS::Parser.parse(raw_doc)
-    self.name = parsed_doc&.title&.content if self.name.blank?
-    self.last_document = raw_doc
-
-    parsed_doc
-  rescue RSS::NotWellFormedError => e
-    # TODO: Handle errors
-    logger.error "Feed parsing failed with #{e}"
+  def fetch_parsed_document
+    RSS::Parser.parse(fetch_feed_document)
   end
 end

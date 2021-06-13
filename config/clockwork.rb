@@ -20,7 +20,7 @@ module Clockwork
   #     CurrencyUpdateWorker.new.update_all
   #   end
 
-  every(5.minutes, 'FeedPollScheduleWorker') do
+  every(5.minutes, 'Feed Poll Schedule') do
     FeedPollScheduleWorker.perform_async
   end
 end
