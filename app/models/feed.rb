@@ -17,6 +17,8 @@ class Feed < ApplicationRecord
 
     schedule_next_poll
     save
+  rescue StandardError => e
+    update(last_poll_error: e.as_json, last_poll_error_at: DateTime.now.utc)
   end
 
   def process_feed(feed_doc)

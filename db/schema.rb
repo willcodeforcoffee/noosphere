@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_13_154008) do
+ActiveRecord::Schema.define(version: 2021_06_13_165917) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,6 +64,8 @@ ActiveRecord::Schema.define(version: 2021_06_13_154008) do
     t.text "last_document"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.jsonb "last_poll_error"
+    t.datetime "last_poll_error_at"
     t.index ["next_poll_at"], name: "index_feeds_on_next_poll_at"
   end
 
