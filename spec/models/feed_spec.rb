@@ -7,10 +7,11 @@ RSpec.describe Feed, type: :model do
     let(:old_2) { create(:feed, :polled_recently, name: 'Recent 2') }
     let(:due_1) { create(:feed, :due_for_poll, name: 'Due 1') }
     let(:due_2) { create(:feed, :due_for_poll, name: 'Due 2') }
+    let(:failed) { create(:feed, :last_poll_failed, name: 'Failed 1') }
 
     # let() lazy loads so save all to create the elements
     before(:each) do
-      [new_1, old_1, old_2, due_1, due_2].each { |feed| feed.save! }
+      [new_1, old_1, old_2, due_1, due_2, failed].each { |feed| feed.save! }
     end
 
     describe '#unscheduled' do
@@ -38,6 +39,10 @@ RSpec.describe Feed, type: :model do
 
       it 'should not include the Feeds recently polled' do
         expect(subject).not_to include old_1, old_2
+      end
+
+      it 'should not include the Feeds in an error state' do
+        expect(subject).not_to include failed
       end
     end
   end
