@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :feed do
+  factory :feed, class: 'Social::Feed' do
     name { "#{Faker::Name.name} Blog" }
     name_override { nil }
     url { Faker::Internet.url(path: '/feed/rss.xml') }

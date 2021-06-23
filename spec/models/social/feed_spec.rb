@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Feed, type: :model do
+RSpec.describe Social::Feed, type: :model do
   describe 'scopes' do
     let(:new_1) { create(:feed, name: 'New Feed') }
     let(:old_1) { create(:feed, :polled_recently, name: 'Recent 1') }
@@ -15,10 +15,10 @@ RSpec.describe Feed, type: :model do
     end
 
     describe '#unscheduled' do
-      subject { Feed.unscheduled }
+      subject { described_class.unscheduled }
 
       it 'should include new Feeds that have never been polled before' do
-        expect(Feed.due_for_poll).to include new_1
+        expect(described_class.due_for_poll).to include new_1
       end
 
       it 'should not include the Feeds recently polled' do
@@ -27,14 +27,14 @@ RSpec.describe Feed, type: :model do
     end
 
     describe '#due_for_poll' do
-      subject { Feed.due_for_poll }
+      subject { described_class.due_for_poll }
 
       it 'should include new Feeds that have never been polled before' do
-        expect(Feed.due_for_poll).to include new_1
+        expect(described_class.due_for_poll).to include new_1
       end
 
       it 'should include both the due Feeds' do
-        expect(Feed.due_for_poll).to include due_1, due_2
+        expect(described_class.due_for_poll).to include due_1, due_2
       end
 
       it 'should not include the Feeds recently polled' do

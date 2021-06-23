@@ -30,7 +30,7 @@ Metrics/BlockLength:
     - "config/environments/**/*"
     - "config/routes.rb"
     - "db/**/*"
-    - "spec/**/*.rb"
+    - "spec/**/*"
 
 Metrics/MethodLength:
   Description: >-

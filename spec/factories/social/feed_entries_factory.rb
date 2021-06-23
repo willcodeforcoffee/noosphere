@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :feed_entry do
+  factory :feed_entry, class: 'Social::FeedEntry' do
     feed { build(:feed) }
     entry_id { Faker::Internet.url }
     title { Faker::Book.title }
