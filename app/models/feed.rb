@@ -6,6 +6,8 @@ class Feed < ApplicationRecord
   validates :name, presence: true
   validates :url, presence: true
 
+  has_many :feed_entries
+
   scope :unscheduled, -> { where(next_poll_at: nil) }
   scope :due_for_poll,
         -> {
@@ -25,8 +27,12 @@ class Feed < ApplicationRecord
 
     schedule_next_poll
     save
+  rescue RSS::NotWellFormedError => e
+    logger.error "Feed parsing failed with NotWellFormedError #{e}"
+    store_error(feed_doc, e)
   rescue StandardError => e
-    update(last_poll_error: e.as_json, last_poll_error_at: DateTime.now.utc)
+    logger.error "Feed parsing failed with #{e}"
+    store_error(feed_doc, e)
   end
 
   def process_feed(feed_doc)
@@ -34,13 +40,12 @@ class Feed < ApplicationRecord
     self.name = parsed_doc&.title&.content if self.name.blank?
     self.last_document = feed_doc
 
-    parsed_doc.items.each { |item| FeedEntry.process_feed_item(item) }
+    parsed_doc.items.each do |item|
+      logger.debug("item: #{item.class}")
+      FeedEntry.process_feed_item(self, item)
+    end
 
     parsed_doc
-  rescue RSS::NotWellFormedError => e
-    # TODO: Handle errors
-    logger.error "Feed parsing failed with #{e}"
-    nil
   end
 
   def schedule_next_poll
@@ -64,5 +69,15 @@ class Feed < ApplicationRecord
 
   def fetch_parsed_document
     RSS::Parser.parse(fetch_feed_document)
+  end
+
+  private
+
+  def store_error(feed_doc, error)
+    update(
+      last_document: feed_doc,
+      last_poll_error: error.message,
+      last_poll_error_at: DateTime.now.utc,
+    )
   end
 end
