@@ -1,11 +1,14 @@
 type Feed {
   createdAt: ISO8601DateTime!
+  description: String
   id: ID!
   lastDocument: String
   lastPollAt: ISO8601DateTime
+  lastPollErrorAt: ISO8601DateTime
   name: String!
   nextPollAt: ISO8601DateTime
   pollingInterval: Interval
+  tags: [String!]
   updatedAt: ISO8601DateTime!
   url: String!
 }
@@ -57,7 +60,7 @@ type Query {
   """
   Fetch feeds in the system
   """
-  feeds: Feed
+  feeds: [Feed!]
 
   """
   An example field added by the generator

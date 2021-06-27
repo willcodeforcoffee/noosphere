@@ -16,9 +16,12 @@ module Types
       'Hello World!'
     end
 
-    field :feeds, FeedType, null: true, description: 'Fetch feeds in the system'
+    field :feeds,
+          [::Types::FeedType],
+          null: true,
+          description: 'Fetch feeds in the system'
     def feeds
-      Feed.all
+      ::Social::Feed.all.map { |feed| ::Types::FeedType.from_feed(feed) }
     end
   end
 end

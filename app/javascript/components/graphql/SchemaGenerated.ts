@@ -22,12 +22,15 @@ export type Scalars = {
 export type Feed = {
   __typename?: 'Feed';
   createdAt: Scalars['ISO8601DateTime'];
+  description?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
   lastDocument?: Maybe<Scalars['String']>;
   lastPollAt?: Maybe<Scalars['ISO8601DateTime']>;
+  lastPollErrorAt?: Maybe<Scalars['ISO8601DateTime']>;
   name: Scalars['String'];
   nextPollAt?: Maybe<Scalars['ISO8601DateTime']>;
   pollingInterval?: Maybe<Scalars['Interval']>;
+  tags?: Maybe<Array<Scalars['String']>>;
   updatedAt: Scalars['ISO8601DateTime'];
   url: Scalars['String'];
 };
@@ -64,10 +67,21 @@ export type PushoverNotificationPayload = {
 export type Query = {
   __typename?: 'Query';
   /** Fetch feeds in the system */
-  feeds?: Maybe<Feed>;
+  feeds?: Maybe<Array<Feed>>;
   /** An example field added by the generator */
   testField: Scalars['String'];
 };
+
+export type ListFeedsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type ListFeedsQuery = (
+  { __typename?: 'Query' }
+  & { feeds?: Maybe<Array<(
+    { __typename?: 'Feed' }
+    & Pick<Feed, 'id' | 'name' | 'url' | 'lastPollAt'>
+  )>> }
+);
 
 export type PushoverNotificationMutationVariables = Exact<{
   message: Scalars['String'];
@@ -91,6 +105,43 @@ export type Unnamed_1_Query = (
 );
 
 
+export const ListFeedsDocument = gql`
+    query ListFeeds {
+  feeds {
+    id
+    name
+    url
+    lastPollAt
+  }
+}
+    `;
+
+/**
+ * __useListFeedsQuery__
+ *
+ * To run a query within a React component, call `useListFeedsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useListFeedsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useListFeedsQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useListFeedsQuery(baseOptions?: Apollo.QueryHookOptions<ListFeedsQuery, ListFeedsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<ListFeedsQuery, ListFeedsQueryVariables>(ListFeedsDocument, options);
+      }
+export function useListFeedsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ListFeedsQuery, ListFeedsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<ListFeedsQuery, ListFeedsQueryVariables>(ListFeedsDocument, options);
+        }
+export type ListFeedsQueryHookResult = ReturnType<typeof useListFeedsQuery>;
+export type ListFeedsLazyQueryHookResult = ReturnType<typeof useListFeedsLazyQuery>;
+export type ListFeedsQueryResult = Apollo.QueryResult<ListFeedsQuery, ListFeedsQueryVariables>;
 export const PushoverNotificationDocument = gql`
     mutation PushoverNotification($message: String!) {
   pushoverNotification(input: {message: $message}) {
