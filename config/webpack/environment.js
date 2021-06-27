@@ -1,3 +1,6 @@
-const { environment } = require('@rails/webpacker')
+const { environment } = require("@rails/webpacker");
 
-module.exports = environment
+const ignoreLoader = require("./loaders/ignore");
+environment.loaders.append("ignore", ignoreLoader);
+
+module.exports = environment;
