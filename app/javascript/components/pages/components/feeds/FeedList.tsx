@@ -1,5 +1,18 @@
-import { useListFeedsQuery } from "components/graphql/SchemaGenerated";
-import * as React from "react";
+import {
+  Avatar,
+  List,
+  ListItem,
+  ListItemAvatar,
+  ListItemText,
+  Typography,
+} from "@material-ui/core";
+import FolderIcon from "@material-ui/icons/Folder";
+import { Feed, useListFeedsQuery } from "components/graphql/SchemaGenerated";
+import React, { MouseEventHandler } from "react";
+
+function onListItemClick(feed: Feed, event: MouseEventHandler<HTMLDivElement>) {
+  console.log("[FeedList#onListItemClick]", feed, event);
+}
 
 export function FeedList(): JSX.Element {
   const { data, loading, error } = useListFeedsQuery();
@@ -15,20 +28,27 @@ export function FeedList(): JSX.Element {
 
   console.log("[FeedList]  data", data);
 
-  const feeds = data.feeds?.map((feed) => {
+  const feedListItems = data.feeds?.map((feed) => {
     return (
-      <div key={feed.id} data-feed-id={feed.id}>
-        <a href={feed.url} target="_blank">
-          {feed.name}
-        </a>
-      </div>
+      <ListItem
+        key={feed.id}
+        data-feed-id={feed.id}
+        onClick={(event) => onListItemClick(feed, event)}
+      >
+        <ListItemAvatar>
+          <Avatar>
+            <FolderIcon />
+          </Avatar>
+        </ListItemAvatar>
+        <ListItemText primary={feed.name} />
+      </ListItem>
     );
   });
 
   return (
     <div id="FeedList">
-      <h2>FeedList</h2>
-      {feeds}
+      <Typography variant="h2">News Feeds</Typography>
+      <List>{feedListItems}</List>
     </div>
   );
 }

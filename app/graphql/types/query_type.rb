@@ -17,11 +17,13 @@ module Types
     end
 
     field :feeds,
-          [::Types::FeedType],
+          [::Types::Social::FeedType],
           null: true,
           description: 'Fetch feeds in the system'
     def feeds
-      ::Social::Feed.all.map { |feed| ::Types::FeedType.from_feed(feed) }
+      ::Social::Feed.all.map do |feed|
+        ::Types::Social::FeedType.from_feed(feed)
+      end
     end
   end
 end

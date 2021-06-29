@@ -23,6 +23,7 @@ export type Feed = {
   __typename?: 'Feed';
   createdAt: Scalars['ISO8601DateTime'];
   description?: Maybe<Scalars['String']>;
+  feedEntries?: Maybe<Array<FeedEntry>>;
   id: Scalars['ID'];
   lastDocument?: Maybe<Scalars['String']>;
   lastPollAt?: Maybe<Scalars['ISO8601DateTime']>;
@@ -31,6 +32,21 @@ export type Feed = {
   nextPollAt?: Maybe<Scalars['ISO8601DateTime']>;
   pollingInterval?: Maybe<Scalars['Interval']>;
   tags?: Maybe<Array<Scalars['String']>>;
+  updatedAt: Scalars['ISO8601DateTime'];
+  url: Scalars['String'];
+};
+
+export type FeedEntry = {
+  __typename?: 'FeedEntry';
+  author?: Maybe<Scalars['String']>;
+  createdAt: Scalars['ISO8601DateTime'];
+  description?: Maybe<Scalars['String']>;
+  entryId: Scalars['String'];
+  feedId: Scalars['Int'];
+  id: Scalars['ID'];
+  publishedAt?: Maybe<Scalars['ISO8601DateTime']>;
+  read: Scalars['Boolean'];
+  title: Scalars['String'];
   updatedAt: Scalars['ISO8601DateTime'];
   url: Scalars['String'];
 };

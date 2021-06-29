@@ -1,6 +1,7 @@
 type Feed {
   createdAt: ISO8601DateTime!
   description: String
+  feedEntries: [FeedEntry!]
   id: ID!
   lastDocument: String
   lastPollAt: ISO8601DateTime
@@ -9,6 +10,20 @@ type Feed {
   nextPollAt: ISO8601DateTime
   pollingInterval: Interval
   tags: [String!]
+  updatedAt: ISO8601DateTime!
+  url: String!
+}
+
+type FeedEntry {
+  author: String
+  createdAt: ISO8601DateTime!
+  description: String
+  entryId: String!
+  feedId: Int!
+  id: ID!
+  publishedAt: ISO8601DateTime
+  read: Boolean!
+  title: String!
   updatedAt: ISO8601DateTime!
   url: String!
 }
