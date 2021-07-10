@@ -28,7 +28,7 @@ Rails
     get 'not_authorized', to: 'home#not_authorized'
 
     # React routes - So router routes will go to the right React page component
-    get '/test', to: 'home#index'
-    get '/auth/sign_in', to: 'home#index'
-    get '/admin', to: 'home#index'
+    %w[/test /admin/* /social/* /social/feed/:id].each do |route|
+      get route, to: 'home#index'
+    end
   end

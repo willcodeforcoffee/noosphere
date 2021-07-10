@@ -1,0 +1,8 @@
+query ListFeeds {
+  feeds {
+    id
+    name
+    url
+    lastPollAt
+  }
+}

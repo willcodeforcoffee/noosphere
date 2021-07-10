@@ -114,6 +114,8 @@ GEM
     factory_bot_rails (6.2.0)
       factory_bot (~> 6.2.0)
       railties (>= 5.0.0)
+    faker (2.18.0)
+      i18n (>= 1.6, < 2)
     ffi (1.15.1)
     gli (2.20.0)
     globalid (0.4.2)
@@ -162,6 +164,7 @@ GEM
       mini_portile2 (~> 2.5.0)
       racc (~> 1.4)
     oj (3.11.5)
+    open-uri (0.1.0)
     orm_adapter (0.5.0)
     parallel (1.20.1)
     parser (3.0.1.1)
@@ -261,6 +264,8 @@ GEM
       rspec-mocks (~> 3.10)
       rspec-support (~> 3.10)
     rspec-support (3.10.2)
+    rss (0.2.9)
+      rexml
     rubocop (1.16.0)
       parallel (~> 1.10)
       parser (>= 3.0.0.0)
@@ -366,12 +371,14 @@ DEPENDENCIES
   dotenv-rails
   factory_bot
   factory_bot_rails
+  faker
   graphiql-rails
   graphql
   graphql-schema_comparator
   jbuilder (~> 2.7)
   letter_opener_web
   listen (~> 3.3)
+  open-uri
   pg (>= 0.18, < 2.0)
   prettier
   pry-byebug
@@ -386,6 +393,7 @@ DEPENDENCIES
   redis (~> 4.0)
   rspec
   rspec-rails
+  rss
   rubocop
   rubocop-rails
   rubocop-rspec

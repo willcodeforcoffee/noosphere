@@ -1,0 +1,8 @@
+query GetFeed($id: String) {
+  feed(id: $id) {
+    id
+    name
+    url
+    lastPollAt
+  }
+}
