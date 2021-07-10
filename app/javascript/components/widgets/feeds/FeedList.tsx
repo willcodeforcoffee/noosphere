@@ -9,8 +9,9 @@ import {
 import FolderIcon from "@material-ui/icons/Folder";
 import { Feed, useListFeedsQuery } from "components/graphql/SchemaGenerated";
 import { Routes } from "components/Router";
-import React, { forwardRef, MouseEvent, useMemo } from "react";
+import React from "react";
 import { Link as RouterLink, generatePath } from "react-router-dom";
+import { GraphQLErrorMessage, LoadingSpinner } from "..";
 
 // function onListItemClick(
 //   feed: Pick<Feed, "id" | "name" | "url" | "lastPollAt">,
@@ -23,12 +24,12 @@ export function FeedList(): JSX.Element {
   const { data, loading, error } = useListFeedsQuery();
 
   if (loading) {
-    return <div>TODO LOADING WIDGET</div>;
+    return <LoadingSpinner />;
   }
 
   if (error) {
     console.error("[FeedList]  ListFeeds error", error);
-    return <div>TODO APOLLOERROR WIDGET</div>;
+    return <GraphQLErrorMessage error={error} />;
   }
 
   console.log("[FeedList]  data", data);

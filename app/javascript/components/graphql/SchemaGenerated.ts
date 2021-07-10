@@ -82,11 +82,31 @@ export type PushoverNotificationPayload = {
 
 export type Query = {
   __typename?: 'Query';
+  /** Fetch a feed */
+  feed?: Maybe<Feed>;
   /** Fetch feeds in the system */
   feeds?: Maybe<Array<Feed>>;
   /** An example field added by the generator */
   testField: Scalars['String'];
 };
+
+
+export type QueryFeedArgs = {
+  id?: Maybe<Scalars['String']>;
+};
+
+export type GetFeedQueryVariables = Exact<{
+  id?: Maybe<Scalars['String']>;
+}>;
+
+
+export type GetFeedQuery = (
+  { __typename?: 'Query' }
+  & { feed?: Maybe<(
+    { __typename?: 'Feed' }
+    & Pick<Feed, 'id' | 'name' | 'url' | 'lastPollAt'>
+  )> }
+);
 
 export type ListFeedsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -121,6 +141,44 @@ export type Unnamed_1_Query = (
 );
 
 
+export const GetFeedDocument = gql`
+    query GetFeed($id: String) {
+  feed(id: $id) {
+    id
+    name
+    url
+    lastPollAt
+  }
+}
+    `;
+
+/**
+ * __useGetFeedQuery__
+ *
+ * To run a query within a React component, call `useGetFeedQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetFeedQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetFeedQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useGetFeedQuery(baseOptions?: Apollo.QueryHookOptions<GetFeedQuery, GetFeedQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetFeedQuery, GetFeedQueryVariables>(GetFeedDocument, options);
+      }
+export function useGetFeedLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetFeedQuery, GetFeedQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetFeedQuery, GetFeedQueryVariables>(GetFeedDocument, options);
+        }
+export type GetFeedQueryHookResult = ReturnType<typeof useGetFeedQuery>;
+export type GetFeedLazyQueryHookResult = ReturnType<typeof useGetFeedLazyQuery>;
+export type GetFeedQueryResult = Apollo.QueryResult<GetFeedQuery, GetFeedQueryVariables>;
 export const ListFeedsDocument = gql`
     query ListFeeds {
   feeds {

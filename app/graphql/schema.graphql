@@ -73,6 +73,16 @@ type PushoverNotificationPayload {
 
 type Query {
   """
+  Fetch a feed
+  """
+  feed(
+    """
+    Feed ID
+    """
+    id: String
+  ): Feed
+
+  """
   Fetch feeds in the system
   """
   feeds: [Feed!]
