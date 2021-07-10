@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { NavBar, SideDrawer } from "./navigation";
-import { Home, Test } from "./pages";
+import { Feed, Home, Test } from "./pages";
 import { Home as AdminHome } from "./pages/admin";
 import { NotFound404 } from "./pages/NotFound404";
 import { AppPaths, AuthDetails } from "./AppConstants";
@@ -10,11 +10,11 @@ import { makeStyles } from "@material-ui/core/styles";
 export const Routes = {
   Home: "/",
   Test: "/test",
-  Auth: {
-    SignIn: "/auth/sign_in",
-  },
   Admin: {
     Home: "/admin",
+  },
+  Social: {
+    Feed: "/social/feed/:id",
   },
 };
 
@@ -50,6 +50,7 @@ export function Router(props: RouterProps): JSX.Element {
           <Route exact path="/" component={Home} />
           <Route path={Routes.Test} component={Test} />
           <Route path={Routes.Admin.Home} component={AdminHome} />
+          <Route path={Routes.Social.Feed} component={Feed} />
           <Route path="*">
             <NotFound404 />
           </Route>

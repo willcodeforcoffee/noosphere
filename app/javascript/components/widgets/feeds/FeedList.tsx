@@ -8,11 +8,16 @@ import {
 } from "@material-ui/core";
 import FolderIcon from "@material-ui/icons/Folder";
 import { Feed, useListFeedsQuery } from "components/graphql/SchemaGenerated";
-import React, { MouseEventHandler } from "react";
+import { Routes } from "components/Router";
+import React, { forwardRef, MouseEvent, useMemo } from "react";
+import { Link as RouterLink, generatePath } from "react-router-dom";
 
-function onListItemClick(feed: Feed, event: MouseEventHandler<HTMLDivElement>) {
-  console.log("[FeedList#onListItemClick]", feed, event);
-}
+// function onListItemClick(
+//   feed: Pick<Feed, "id" | "name" | "url" | "lastPollAt">,
+//   event: MouseEvent<HTMLLIElement>
+// ) {
+//   console.log("[FeedList#onListItemClick]", feed, event);
+// }
 
 export function FeedList(): JSX.Element {
   const { data, loading, error } = useListFeedsQuery();
@@ -29,19 +34,19 @@ export function FeedList(): JSX.Element {
   console.log("[FeedList]  data", data);
 
   const feedListItems = data.feeds?.map((feed) => {
+    const to = generatePath(Routes.Social.Feed, { id: feed.id });
+
     return (
-      <ListItem
-        key={feed.id}
-        data-feed-id={feed.id}
-        onClick={(event) => onListItemClick(feed, event)}
-      >
-        <ListItemAvatar>
-          <Avatar>
-            <FolderIcon />
-          </Avatar>
-        </ListItemAvatar>
-        <ListItemText primary={feed.name} />
-      </ListItem>
+      <RouterLink key={feed.id} to={to}>
+        <ListItem>
+          <ListItemAvatar>
+            <Avatar>
+              <FolderIcon />
+            </Avatar>
+          </ListItemAvatar>
+          <ListItemText primary={feed.name} />
+        </ListItem>
+      </RouterLink>
     );
   });
 
